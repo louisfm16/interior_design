@@ -1,0 +1,17 @@
+*, html, body, a, ul, li {
+    color: inherit;
+    text-decoration: none;
+    list-style: none;
+    font-family: inherit;
+}
+
+html, body {
+    height: 100%;
+    height: 100vh;
+    width: 100%;
+    width: 100vw;
+    overflow: hidden;
+    font-family: $primary-font;
+    background-color: $primary_color--norm;
+    color: $secondary_color--norm;
+}
