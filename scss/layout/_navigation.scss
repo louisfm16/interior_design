@@ -12,7 +12,7 @@ nav {
 
 .logo {
     display: inline-block;
-    font-size: $font--l;
+    font-size: $font--m;
     font-family: $secondary_font;
     color: $secondary_color--light;
     line-height: $navbar-height;
@@ -25,6 +25,7 @@ nav {
     width: $menu-width;
     top: 0;
     right: 0;
+    z-index: 100;
 
     &__links:first-child {
         color: $secondary_color--norm;
@@ -54,6 +55,7 @@ nav {
     height: $hamburger-size;
     width: $hamburger-size;
     transform: translate(-50%, -50%);
+    z-index: 200;
 
     &__icon::before {
         content: "";
