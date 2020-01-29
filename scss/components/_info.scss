@@ -1,0 +1,46 @@
+.info {
+    position: relative;
+    // overflow: auto; // this fucks with a lot of shit, mostly margin
+    height: 35vh;
+
+    &__title {
+        font-size: $font--xl;
+        color: $secondary-color--light;
+        line-height: 1.2em;
+        letter-spacing: 0.03em;
+        margin-top: 30px;
+    }
+
+    &__link::before {
+        content: "";
+        display: inline-block;
+        height: 2px;
+        width: 35px;
+        margin-right: 15px;
+        background-color: $tertiary-color--light;
+    }
+
+    &__link {
+        font-size: $font--m;
+        color: $tertiary-color--light;
+        letter-spacing: 0.03em;
+    }
+
+    &__index {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        line-height: 0.5em;
+        font-size: 10em;
+        font-family: $tertiary_font;
+        color: $secondary-color--light;
+        opacity: 0.1;
+    }
+}
+
+// Test
+// .carousel {
+//     height: 50vh;
+//     background-color: blue;
+//     opacity: 0.1;
+// }
