@@ -1,38 +1,87 @@
 $navbar-height: 75px;
+$menu-width: 45%;  // TODO: Will be a set value based upon font-size
+$hamburger-size: 1.5em;
+$edge-padding: 10px;
 
 nav {
+    position: relative;
     height: $navbar-height;
     border-bottom: 1px solid $secondary_color--dark;
+    padding: 0 $edge-padding;
+}
+
+.logo {
+    display: inline-block;
+    font-size: $font--l;
+    font-family: $secondary_font;
+    color: $secondary_color--light;
+    line-height: $navbar-height;
 }
 
 .menu {
     background-color: $primary_color--dark;
     position: absolute;
     height: 100vh;
-    width: 45%; // TODO: Will be a set value based upon font-size
+    width: $menu-width;
     top: 0;
     right: 0;
-    padding-top: $navbar-height;
 
     &__links:first-child {
         color: $secondary_color--norm;
-        margin-top: 15px;
+        margin-top: $navbar-height + 15px;
     }
 
     &__links {
         text-align: center;
-        font-size: $font-m;
+        font-size: $font--m;
         font-weight: 400;
         color: $secondary_color--dark;
         margin: 35px 0;
     }
 }
 
+.menu--hidden {
+    display: none;
+    right: -$menu-width;
+}
+
+// TODO: This will be an animated icon
 .menu-toggle {
+    display: inline-block;
     position: absolute;
     top: $navbar-height / 2;
-    right: 20px;
+    right: $edge-padding;
+    height: $hamburger-size;
+    width: $hamburger-size;
     transform: translate(-50%, -50%);
-    font-size: $font-m;
-    color: $secondary_color--light;
+
+    &__icon::before {
+        content: "";
+        position: absolute;
+        top: -$hamburger-size / 2.25;
+        height: 0.2em;
+        width: 50%;
+        background-color: $secondary_color--light;
+        border-radius: 5px;
+    }
+
+    &__icon {
+        position: absolute;
+        @include v-center;
+        height: 0.2em;
+        width: 100%;
+        border-radius: 5px;
+        background-color: $secondary_color--light;
+    }
+
+    &__icon::after {
+        content: "";
+        position: absolute;
+        top: $hamburger-size / 2.25;
+        right: 0;
+        height: 0.2em;
+        width: 50%;
+        background-color: $secondary_color--light;
+        border-radius: 5px;
+    }
 }

@@ -13,15 +13,15 @@ $tertiary_color--dark: #D19468;
 
 // Font sizes
 // TODO: Edit to be responsive
-$font-xxs: 0.5em;
-$font-xs: 0.8em;
-$font-s: 1em;
-$font-m: 1.5em;
-$font-l: 2em;
-$font-xl: 4em;
-$font-xxl: 6em;
+$font--xxs: 0.5em;
+$font--xs: 0.8em;
+$font--s: 1em;
+$font--m: 1.5em;
+$font--l: 2em;
+$font--xl: 4em;
+$font--xxl: 6em;
 
 // Font names
-$primary_font: sans-serif;
-$secondary_font: sans-serif;
-$tertiary_font: sans-serif;
+$primary_font: 'Pavanam', sans-serif;
+$secondary_font: 'Ailerons', sans-serif;
+$tertiary_font: 'Florencesans', sans-serif;
