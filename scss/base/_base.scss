@@ -11,8 +11,26 @@ html, body {
     height: 100vh;
     width: 100%;
     width: 100vw;
-    overflow: hidden;
+    // overflow: hidden;
     font-family: $primary-font;
     background-color: $primary_color--norm;
     color: $secondary_color--norm;
+}
+
+// sizing of skeleton elements for mobile
+.container {
+    height: 100%;
+    padding-top: $navbar-height;
+}
+
+.row {
+    height: inherit;
+}
+
+.one-third {
+    height: 40%;
+}
+
+.two-thirds {
+    height: 60%;
 }

@@ -1,13 +1,13 @@
-$navbar-height: 75px;
 $menu-width: 45%;  // TODO: Will be a set value based upon font-size
 $hamburger-size: 1.5em;
 $edge-padding: 10px;
 
 nav {
-    position: relative;
+    position: absolute;
     height: $navbar-height;
     border-bottom: 1px solid $secondary_color--dark;
     padding: 0 $edge-padding;
+    z-index: 50;
 }
 
 .logo {

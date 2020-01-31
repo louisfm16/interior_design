@@ -1,14 +1,14 @@
 .info {
     position: relative;
     // overflow: auto; // this fucks with a lot of shit, mostly margin
-    height: 35vh;
+    height: 100%;
 
     &__title {
         font-size: $font--xl;
         color: $secondary-color--light;
         line-height: 1.2em;
         letter-spacing: 0.03em;
-        margin-top: 30px;
+        padding-top: 30px;
     }
 
     &__link::before {
@@ -39,8 +39,6 @@
 }
 
 // Test
-// .carousel {
-//     height: 50vh;
-//     background-color: blue;
-//     opacity: 0.1;
-// }
+.carousel {
+    height: 100%;
+}

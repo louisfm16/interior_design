@@ -1,0 +1,22 @@
+.carousel {
+    position: relative;
+    // background-color: red;
+    width: 100%;
+
+    &__card {
+        position: relative;
+        // background-color: blue;
+        height: 95%;
+        width: 80%;
+        margin: auto;
+        overflow: hidden;
+
+        & > img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            height: 100%;
+            transform: translate(-50%, -50%);
+        }
+    }
+}
