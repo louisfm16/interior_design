@@ -4,19 +4,37 @@
     width: 100%;
 
     &__card {
-        position: relative;
-        // background-color: blue;
+        // position: relative;
+        display: inline-block;
         height: 95%;
-        width: 80%;
-        margin: auto;
+        width: 70%;
+        margin: 0 15px;
+        border-radius: 1px;
         overflow: hidden;
 
         & > img {
+            // display: none;
             position: absolute;
-            top: 50%;
-            left: 50%;
             height: 100%;
-            transform: translate(-50%, -50%);
+            @include center;
+
+
+
+            // position: fixed;
+            // height: 376.75px;
+            // left: 50%;
+            // transform: translateX(-50%);
         }
     }
+}
+
+.carousel::after {
+    content: "";
+    position: absolute;
+    display: block;
+    height: 100%;
+    width: 20%;
+    top: -5%;
+    background: linear-gradient(90deg, rgba(30,31,35,1) 0%, rgba(30,31,35,0.5046393557422969) 50%, rgba(30,31,35,0) 100%);
+    // background: linear-gradient(90deg, rgba(30,31,35,0.9528186274509804) 0%, rgba(30,31,35,0.3477766106442577) 50%, rgba(30,31,35,0) 100%);
 }
