@@ -7,7 +7,7 @@ nav {
     height: $navbar-height;
     border-bottom: 1px solid $secondary_color--dark;
     padding: 0 $edge-padding;
-    z-index: 50;
+    z-index: $index-2;
 }
 
 .logo {
@@ -25,7 +25,8 @@ nav {
     width: $menu-width;
     top: 0;
     right: 0;
-    z-index: 100;
+    z-index: $index-2;
+    transition: all 0.1s ease-in;
 
     &__links:first-child {
         color: $secondary_color--norm;
@@ -38,11 +39,16 @@ nav {
         font-weight: 400;
         color: $secondary_color--dark;
         margin: 35px 0;
+        cursor: pointer;
+        transition: all 0.1s ease-in-out;
+    }
+
+    &__links:hover > a {
+        color: $secondary_color--norm;
     }
 }
 
 .menu--hidden {
-    display: none;
     right: -$menu-width;
 }
 
@@ -55,7 +61,8 @@ nav {
     height: $hamburger-size;
     width: $hamburger-size;
     transform: translate(-50%, -50%);
-    z-index: 200;
+    z-index: $index-1;
+    cursor: pointer;
 
     &__icon::before {
         content: "";

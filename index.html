@@ -23,7 +23,7 @@
         <h1 class="logo">Architects</h1>
 
         <!-- menu + links NOTE: expanded/compact depending on device -->
-        <ul class="menu menu--hidden">
+        <ul class="menu menu--hidden" id="menu">
             <li class="menu__links"><a href="#">Home</a></li>
             <li class="menu__links"><a href="#">Collections</a></li>
             <li class="menu__links"><a href="#">About</a></li>
@@ -31,7 +31,7 @@
         </ul>
 
         <!-- Toggle Navigation button NOTE: hidden on desktop -->
-        <span class="menu-toggle"><i class="menu-toggle__icon"></i></span>
+        <span class="menu-toggle" id="menu-toggle"><i class="menu-toggle__icon"></i></span>
     </nav>
 
     <div class="container">
@@ -39,7 +39,7 @@
             <div class="one-third column">
                 <!-- Basic info for current card -->
                 <div class="info">
-                    <span class="info__index">02</span>
+                    <span class="info__index" id="info__index">02</span>
 
                     <h1 class="info__title">Dark <br> Interior</h1>
                     <a href="#" class="info__link">Learn more</a>
@@ -49,18 +49,20 @@
             <div class="two-thirds column">
                 <!-- Carousel for parallax cards w/ images -->
                 <div class="carousel">
+                    <span class="carousel__shade"></span>
+
                     <div class="carousel__card"><img src="https://adorable-home.com/wp-content/uploads/2016/06/Modern-dark-interiors-2.jpg" alt=""></div>
                     <div class="carousel__card"><img src="https://adorable-home.com/wp-content/uploads/2016/06/Modern-dark-interiors-1.jpg" alt=""></div>
-                    <!-- <div class="carousel__card"><img src="" alt=""></div>
-                    <div class="carousel__card"><img src="" alt=""></div>
-                    <div class="carousel__card"><img src="" alt=""></div> -->
+                    <div class="carousel__card"><img src="https://adorable-home.com/wp-content/uploads/2016/06/Modern-dark-interiors-10.jpg" alt=""></div>
+                    <div class="carousel__card"><img src="https://cdn.homedit.com/wp-content/uploads/2013/08/black-interior-design-for-apartment.jpg" alt=""></div>
+                    <div class="carousel__card"><img src="https://www.interiorzine.com/wp-content/uploads/2017/01/trendy-dark-bachelor-apartment-22.jpg" alt=""></div>
                 </div>
             </div>
         </div>
     </div>
 
     <footer>
-        <!-- COming soon -->
+        <!-- Coming soon -->
     </footer>
 </body>
 </html>
