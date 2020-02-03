@@ -1,0 +1,27 @@
+.details {
+    @include v-center;
+    position: fixed !important;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    z-index: $index-1;
+    transition: none;
+
+    & > img {
+        // display: none;
+        position: absolute;
+        left: 50%;
+        top: 0%;
+        transform: translate(-50%, 0) !important;
+        height: 50vh;
+        z-index: inherit;
+    }
+
+    &__info {
+        position: absolute;
+        bottom: 0;
+        height: 50vh;
+        width: 100%;
+        background-color: $primary_color--dark;
+    }
+}

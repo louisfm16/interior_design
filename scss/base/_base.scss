@@ -34,3 +34,13 @@ html, body {
 .two-thirds {
     height: 60%;
 }
+
+// Flickity styling workarounds
+.flickity-viewport {
+    overflow: visible !important;
+    height: 100% !important;
+}
+
+.flickity-slider--details {
+    transform: none !important;
+}

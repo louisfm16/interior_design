@@ -3,23 +3,26 @@
     height: 100%;
     width: 100%;
 
-    &__shade {
-        position: absolute;
-        @include center;
-        height: 101%;
-        width: 101%;
-        background: linear-gradient(90deg, rgba(30,31,35,1) 0%, rgba(30,31,35,0) 10%, rgba(30,31,35,0) 90%, rgba(30,31,35,1) 100%);
-        pointer-events: none;
-        z-index: $index-3;
-    }
+    // *May end up removing this
+    // &__shade {
+    //     display: none;
+    //     @include center;
+    //     height: 101%;
+    //     width: 101%;
+    //     overflow: hidden;
+    //     background: linear-gradient(90deg, rgba(30,31,35,1) 0%, rgba(30,31,35,0) 10%, rgba(30,31,35,0) 90%, rgba(30,31,35,1) 100%);
+    //     pointer-events: none;
+    //     z-index: $index-3;
+    // }
 
     &__card {
-        height: 95%;
+        @include v-center;
+        height: 90%;
         width: 60%;
         margin: 0 15px;
         border-radius: 3px;
         overflow: hidden;
-        filter: brightness(0.6);
+        filter: brightness(0.5);
         transition: all 0.3s;
 
         & > img {

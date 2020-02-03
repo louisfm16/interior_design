@@ -1,6 +1,6 @@
 let flkty,
-    cardsCount,
-    galleryIndex = '00',
+    currIndex = 0,
+    galleryIndex,
     menuOpen = false,
     docStyle,
     transformProp;
@@ -60,13 +60,54 @@ function Init() {
         prevNextButtons: false,
         pageDots: false,
         imagesLoaded: true,
-        percentPosition: false
+        percentPosition: false,
+        
+        // freeScroll: false,
+        // draggable: false,
+        // accessibility: false,
     });
+
+    // Click events for cards / images
+    for (var i = 0; i < carouselImgs.length; i++) {
+        carouselImgs[i].parentNode.addEventListener("click", function (e) {
+            e.preventDefault();
+            let self = this;
+            
+            // Small delay to allow the default animation of Flickity even when not needed
+            setTimeout(function() {
+                if(!flkty.isAnimating) {
+                    OpenDetails(self);
+                }
+            }, 100);
+        });
+    }
     
     SetIndex();
+
+    // flkty.destroy();
 }
 
 function SetIndex() {
-    let index = `0${(flkty.selectedIndex + 1)}`;
-    galleryIndex.innerHTML = index;
+    currIndex = flkty.selectedIndex;
+    galleryIndex.innerHTML = `0${(currIndex + 1)}`;
+}
+
+function OpenDetails(self) {
+    let slider = document.getElementsByClassName('flickity-slider')[0];
+    slider.classList.add('flickity-slider--details');
+
+    self.classList.add('details');
+    self.classList.remove('carousel__card');
+
+    let infoDiv = document.createElement('div');
+    infoDiv.classList.add('details__info');
+
+    self.appendChild(infoDiv);
+}
+
+function CloseDetails(self) {
+    self.classList.remove('details');
+    self.classList.add('carousel__card');
+    let slider = document.getElementsByClassName('flickity-slider')[0];
+    slider.classList.remove('flickity-slider--details');
 }
