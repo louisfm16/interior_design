@@ -19,20 +19,21 @@
         width: 40px;
         left: -60px;
         margin-right: 15px;
-        background-color: $tertiary-color--light;
+        background-color: $tertiary-color--norm;
+        transition: all 0.1s ease-in;
     }
 
     &__link {
         position: relative;
         font-size: $font--m;
-        color: $tertiary-color--light;
+        color: $tertiary-color--norm;
         letter-spacing: 0.03em;
         margin-left: 60px;
+        transition: all 0.1s ease-in;
     }
 
-    &__link:hover {
-        color: $tertiary-color--dark;
-        transition: all 0.1s ease-in;
+    &__link:hover{
+        color: $tertiary-color--light;
     }
 
     &__index {

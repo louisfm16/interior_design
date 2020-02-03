@@ -5,31 +5,32 @@
 
     &__shade {
         position: absolute;
-        height: 95%;
-        width: 100%;
+        @include center;
+        height: 101%;
+        width: 101%;
         background: linear-gradient(90deg, rgba(30,31,35,1) 0%, rgba(30,31,35,0) 10%, rgba(30,31,35,0) 90%, rgba(30,31,35,1) 100%);
         pointer-events: none;
-        z-index: $index-2;
+        z-index: $index-3;
     }
 
     &__card {
-        display: inline-block;
         height: 95%;
         width: 60%;
         margin: 0 15px;
-        border-radius: 1px;
+        border-radius: 3px;
         overflow: hidden;
+        filter: brightness(0.6);
+        transition: all 0.3s;
 
         & > img {
-            // display: none;
-            position: absolute;
             height: 100%;
             @include center;
-
-            // position: fixed;
-            // height: 376.75px;
-            // left: 50%;
-            // transform: translateX(-50%);
         }
+    }
+
+    &__card.is-selected {
+        filter: brightness(1.1);
+        // border needs more tweaking???
+        // border: 1px solid $tertiary_color--light;
     }
 }

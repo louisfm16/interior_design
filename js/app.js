@@ -1,10 +1,15 @@
-let flkty;
-let galleryIndex = '00';
-let menuOpen = false;
+let flkty,
+    cardsCount,
+    galleryIndex = '00',
+    menuOpen = false,
+    docStyle,
+    transformProp;
 
 // Elements
-let menu;
-let menuToggle;
+let menu,
+    menuToggle,
+    carousel,
+    carouselImgs;
 
 document.addEventListener('DOMContentLoaded', function(){
     Init();
@@ -20,24 +25,44 @@ document.addEventListener('DOMContentLoaded', function(){
         menuOpen = !menuOpen;
     });
 
-    flkty.on( 'change', function() {
+    flkty.on('staticClick', function( event, pointer, cellElement, cellIndex ) {
+        if (typeof cellIndex == 'number') {
+            flkty.selectCell( cellIndex );
+        }
+    });
+
+    flkty.on('change', function() {
         SetIndex();
+    });
+
+    flkty.on('scroll', function() {
+        flkty.slides.forEach(function(slide, i) {
+            let img = carouselImgs[i];
+            let x = ((slide.target + flkty.x) * -1/3) - slide.outerWidth;
+            img.style[transformProp] = 'translate(' + x + 'px, -50%)';
+        });
     });
 });
 
 function Init() {
-    flkty = new Flickity( '.carousel', {
+    menu = document.getElementById('menu');
+    menuToggle = document.getElementById('menu-toggle');
+    carousel = document.getElementById('carousel');
+    carouselImgs = carousel.querySelectorAll('.carousel__card img');
+    galleryIndex = document.getElementById('info__index');
+
+    docStyle = document.documentElement.style;
+    transformProp = typeof docStyle.transform == 'string' ? 'transform' : 'WebkitTransform';
+
+    flkty = new Flickity(carousel, {
         cellSelector: '.carousel__card',
         freeScroll: true,
         prevNextButtons: false,
         pageDots: false,
-        // autoPlay: 3000
+        imagesLoaded: true,
+        percentPosition: false
     });
-
-    menu = document.getElementById('menu');
-    menuToggle = document.getElementById('menu-toggle');
-    galleryIndex = document.getElementById('info__index');
-
+    
     SetIndex();
 }
 

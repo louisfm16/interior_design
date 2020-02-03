@@ -5,6 +5,7 @@ $edge-padding: 10px;
 nav {
     position: absolute;
     height: $navbar-height;
+    width: 100%;
     border-bottom: 1px solid $secondary_color--dark;
     padding: 0 $edge-padding;
     z-index: $index-2;
