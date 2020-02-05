@@ -1,21 +1,31 @@
+// Good Color pallette
+// https://coolors.co/75dddd-508991-172a3a-004346-09bc8a
+
 // Main colors
-$primary_color--light: #232428;
-$primary_color--norm: #1E1F23;
-$primary_color--dark: #1C1D20;
+// * Previously used pallette
+// $primary_color--light: #232428;
+// $primary_color--norm: #1E1F23;
+// $primary_color--dark: #1C1D20;
 
-$secondary_color--light: #ffffff;
-$secondary_color--norm: #F2F2F2;
-$secondary_color--dark: rgba(#F2F2F2, 0.3);
+// $secondary_color--light: #ffffff;
+// $secondary_color--norm: #F2F2F2;
+// $secondary_color--dark: rgba(#F2F2F2, 0.3);
 
-// *OLD colors
 // $tertiary_color--light: #DAA279;
-// $tertiary_color--norm: #D7996C;
-// $tertiary_color--dark: #D19468;
+// $tertiary_color--norm: #DD8D5A;
+// $tertiary_color--dark: #B07E59;
 
+$primary_color--light: #32324e;
+$primary_color--norm: #191938;
+$primary_color--dark: #000022;
 
-$tertiary_color--light: #DAA279;
-$tertiary_color--norm: #DD8D5A;
-$tertiary_color--dark: #B07E59;
+$secondary_color--light: #f40000;
+$secondary_color--norm: #f40000;
+$secondary_color--dark: #c10000;
+
+$tertiary_color--light: #ffffff;
+$tertiary_color--norm: #F2F2F2;
+$tertiary_color--dark: rgba(#F2F2F2, 0.3);
 
 // Font sizes
 // TODO: Edit to be responsive

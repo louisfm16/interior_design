@@ -1,6 +1,7 @@
 .details {
     @include v-center;
     position: fixed !important;
+    left: 0 !important;
     height: 100%;
     width: 100%;
     overflow: hidden;

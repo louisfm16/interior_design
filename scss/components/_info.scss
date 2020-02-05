@@ -21,6 +21,7 @@
         margin-right: 15px;
         background-color: $tertiary-color--norm;
         transition: all 0.1s ease-in;
+        box-shadow: -1px 1px #000;
     }
 
     &__link {
@@ -30,6 +31,7 @@
         letter-spacing: 0.03em;
         margin-left: 60px;
         transition: all 0.1s ease-in;
+        text-shadow: -1px 1px 2px #000;
     }
 
     &__link:hover{
