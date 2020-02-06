@@ -6,7 +6,8 @@ nav {
     position: absolute;
     height: $navbar-height;
     width: 100%;
-    border-bottom: 1px solid $secondary_color--dark;
+    border-bottom: 1px solid $primary_color--light;
+    // border-bottom: 1px solid $secondary_color--light;
     padding: 0 $edge-padding;
     z-index: $index-2;
 }
@@ -15,12 +16,14 @@ nav {
     display: inline-block;
     font-size: $font--m;
     font-family: $secondary_font;
-    color: $secondary_color--light;
+    color: $secondary_color--norm;
+    // color: $tertiary_color--norm;
     line-height: $navbar-height;
 }
 
 .menu {
-    background-color: $primary_color--dark;
+    background-color: $primary_color--norm;
+    border-left: 5px solid $secondary_color--dark;
     position: absolute;
     height: 100vh;
     width: $menu-width;
@@ -30,7 +33,7 @@ nav {
     transition: all 0.1s ease-in;
 
     &__links:first-child {
-        color: $secondary_color--norm;
+        color: $tertiary_color--light;
         margin-top: $navbar-height + 15px;
     }
 
@@ -38,14 +41,15 @@ nav {
         text-align: center;
         font-size: $font--m;
         font-weight: 400;
-        color: $secondary_color--dark;
+        color: $tertiary_color--dark;
         margin: 35px 0;
         cursor: pointer;
         transition: all 0.1s ease-in-out;
+        text-shadow: -1px 1px 2px #000;
     }
 
     &__links:hover > a {
-        color: $secondary_color--norm;
+        color: $tertiary_color--light;
     }
 }
 
@@ -71,7 +75,7 @@ nav {
         top: -$hamburger-size / 2.25;
         height: 0.2em;
         width: 50%;
-        background-color: $secondary_color--light;
+        background-color: inherit;
         border-radius: 5px;
     }
 
@@ -81,7 +85,7 @@ nav {
         height: 0.2em;
         width: 100%;
         border-radius: 5px;
-        background-color: $secondary_color--light;
+        background-color: $tertiary_color--light;
     }
 
     &__icon::after {
@@ -91,7 +95,7 @@ nav {
         right: 0;
         height: 0.2em;
         width: 50%;
-        background-color: $secondary_color--light;
+        background-color: inherit;
         border-radius: 5px;
     }
 }

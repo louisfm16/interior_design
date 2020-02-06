@@ -5,7 +5,7 @@
 
     &__title {
         font-size: $font--xl;
-        color: $secondary-color--light;
+        color: $tertiary_color--norm;
         line-height: 1.2em;
         letter-spacing: 0.03em;
         padding-top: 30px;
@@ -19,7 +19,7 @@
         width: 40px;
         left: -60px;
         margin-right: 15px;
-        background-color: $tertiary-color--norm;
+        background-color: $secondary_color--norm;
         transition: all 0.1s ease-in;
         box-shadow: -1px 1px #000;
     }
@@ -27,15 +27,14 @@
     &__link {
         position: relative;
         font-size: $font--m;
-        color: $tertiary-color--norm;
+        color: $secondary_color--norm;
         letter-spacing: 0.03em;
         margin-left: 60px;
         transition: all 0.1s ease-in;
-        text-shadow: -1px 1px 2px #000;
     }
 
     &__link:hover{
-        color: $tertiary-color--light;
+        color: $secondary_color--light;
     }
 
     &__index {
@@ -45,7 +44,7 @@
         line-height: 0.5em;
         font-size: 10em;
         font-family: $tertiary_font;
-        color: $secondary-color--light;
-        opacity: 0.1;
+        color: $secondary_color--dark;
+        opacity: 0.2;
     }
 }
