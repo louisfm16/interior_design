@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>fERRARI</title>
+    <title>FERRARI</title>
 
     <link rel="stylesheet" href="./assets/libs/normalize.css">
-    <link rel="stylesheet" href="./assets/libs/skeleton.css">
+    <!-- <link rel="stylesheet" href="./assets/libs/skeleton.css"> -->
     <link rel="stylesheet" href="./assets/libs/flickity.min.css">
     <link rel="stylesheet" href="./css/main.min.css">
 
@@ -18,7 +18,7 @@
 <body>
     <!-- Navigation Bar/Container -->
     <!-- TODO: fix to use skeleton library -->
-    <nav class="u-full-width">
+    <nav>
         <!-- Title/Logo -->
         <h1 class="logo">FERRARI</h1>
 
@@ -35,45 +35,35 @@
     </nav>
 
     <div class="container">
-        <div class="row">
-            <div class="one-third column">
-                <!-- Basic info for current card -->
-                <div class="info">
-                    <span class="info__index" id="info__index">02</span>
+        <!-- Basic info for current card -->
+        <div class="info">
+            <span class="info__index" id="info__index">02</span>
 
-                    <h1 class="info__title">Ferrari <br> Roma</h1>
-                    <a href="#" class="info__link">Learn more</a>
-                </div>
+            <h1 class="info__title">Ferrari <br> Roma</h1>
+            <a href="#" class="info__link">Learn more</a>
+        </div>
+
+        <!-- Carousel for parallax cards w/ images -->
+        <div class="carousel" id="carousel">
+            <!-- *May end up removing this -->
+            <!-- <span class="carousel__shade"></span> -->
+
+            <div class="carousel__card">
+                <img src="https://robbreportedit.files.wordpress.com/2019/11/roma01.jpg?w=1000" alt="">
             </div>
-
-            <div class="two-thirds column">
-                <!-- Carousel for parallax cards w/ images -->
-                <div class="carousel" id="carousel">
-                    <!-- *May end up removing this -->
-                    <!-- <span class="carousel__shade"></span> -->
-
-                    <div class="carousel__card">
-                        <img src="https://robbreportedit.files.wordpress.com/2019/11/roma01.jpg?w=1000" alt="">
-                    </div>
-                    <div class="carousel__card">
-                        <img src="https://gearpatrol.com/wp-content/uploads/2019/11/Ferrari-Roma-Gear-Patrol-slide-4.jpg" alt="">
-                    </div>
-                    <div class="carousel__card">
-                        <img src="https://media.magazine.ferrari.com/images/2019/09/02/135320550-133dceb9-5638-4177-804f-18b1195a17f2.jpg" alt="">
-                    </div>
-                    <div class="carousel__card">
-                        <img src="https://cnet2.cbsistatic.com/img/B63QOpcpny1u9CH-q4y4QuT3KTs=/756x425/2019/12/19/bc9e8208-4e2a-4093-ac91-c5f3d74d9f00/1838612-ferrari-roma-2-02.jpg" alt="">
-                    </div>
-                    <div class="carousel__card">
-                        <img src="https://gearpatrol.com/wp-content/uploads/2019/11/Ferrari-Roma-Gear-Patrol-slide-2.jpg" alt="">
-                    </div>
-                </div>
+            <div class="carousel__card">
+                <img src="https://gearpatrol.com/wp-content/uploads/2019/11/Ferrari-Roma-Gear-Patrol-slide-4.jpg" alt="">
+            </div>
+            <div class="carousel__card">
+                <img src="https://media.magazine.ferrari.com/images/2019/09/02/135320550-133dceb9-5638-4177-804f-18b1195a17f2.jpg" alt="">
+            </div>
+            <div class="carousel__card">
+                <img src="https://cnet2.cbsistatic.com/img/B63QOpcpny1u9CH-q4y4QuT3KTs=/756x425/2019/12/19/bc9e8208-4e2a-4093-ac91-c5f3d74d9f00/1838612-ferrari-roma-2-02.jpg" alt="">
+            </div>
+            <div class="carousel__card">
+                <img src="https://gearpatrol.com/wp-content/uploads/2019/11/Ferrari-Roma-Gear-Patrol-slide-2.jpg" alt="">
             </div>
         </div>
     </div>
-
-    <footer>
-        <!-- Coming soon -->
-    </footer>
 </body>
 </html>

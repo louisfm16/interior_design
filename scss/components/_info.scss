@@ -1,13 +1,17 @@
 .info {
+    display: block;
     position: relative;
-    // overflow: auto; // this fucks with a lot of shit, mostly margin
-    height: 100%;
+    height: 40%;
+    width: 100%;
+    padding: 0 40px;
+    padding-top: $navbar-height;
 
     &__title {
-        font-size: $font--xl;
+        position: inherit;
+        font-size: $font--l;
         color: $tertiary_color--norm;
         line-height: 1.2em;
-        letter-spacing: 0.03em;
+        letter-spacing: 0.07em;
         padding-top: 30px;
     }
 
@@ -25,10 +29,10 @@
     }
 
     &__link {
-        position: relative;
+        position: inherit;
         font-size: $font--m;
         color: $secondary_color--norm;
-        letter-spacing: 0.03em;
+        letter-spacing: 0.07em;
         margin-left: 60px;
         transition: all 0.1s ease-in;
     }
@@ -38,8 +42,9 @@
     }
 
     &__index {
+        display: block;
         position: absolute;
-        bottom: 0;
+        bottom: -5%;
         right: 0;
         line-height: 0.5em;
         font-size: 10em;
