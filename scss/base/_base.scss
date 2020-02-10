@@ -36,3 +36,10 @@ h1, h2, h3, h4, h5, h6 {
 .flickity-slider--details {
     transform: none !important;
 }
+
+// Desktop
+@media (min-width: 1025px) {
+    .container {
+        height: 90%;
+    }
+}

@@ -6,8 +6,8 @@ nav {
     position: absolute;
     height: $navbar-height;
     width: 100%;
+    background-color: $primary_color--norm;
     border-bottom: 1px solid $primary_color--light;
-    // border-bottom: 1px solid $secondary_color--light;
     padding: 0 $edge-padding;
     z-index: $index-2;
 }
@@ -98,4 +98,35 @@ nav {
         background-color: inherit;
         border-radius: 5px;
     }
+}
+
+// * Media Queries
+
+// Ipad portrait
+@media (min-width: 768px) and (max-width: 1024px) {
+    nav {
+        padding: 0 ($edge-padding * 3);
+    }
+    
+    .logo {
+        font-size: 2em;
+    }
+
+    .menu {
+        border-left: 10px solid $secondary_color--dark;
+        
+        &__links {
+            font-size: 2.2em;
+            margin: 50px 0;
+        }
+    }
+
+    .menu-toggle {
+        right: ($edge-padding * 3);
+    }
+}
+
+// Ipad landscape
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
 }

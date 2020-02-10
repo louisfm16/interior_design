@@ -5,6 +5,7 @@
     width: 100%;
     padding: 0 40px;
     padding-top: $navbar-height;
+    background-color: $primary_color--norm;
 
     &__title {
         position: inherit;
@@ -22,7 +23,6 @@
         height: 2px;
         width: 40px;
         left: -60px;
-        margin-right: 15px;
         background-color: $secondary_color--norm;
         transition: all 0.1s ease-in;
         box-shadow: -1px 1px #000;
@@ -51,5 +51,57 @@
         font-family: $tertiary_font;
         color: $secondary_color--dark;
         opacity: 0.2;
+    }
+}
+
+// * Media Queries
+
+// Ipad portrait
+@media (min-width: 768px) and (max-width: 1024px) {
+    .info {
+        display: block;
+        position: relative;
+        height: 40%;
+        width: 100%;
+        padding: 0 80px;
+        padding-top: $navbar-height;
+
+        &__title {
+            font-size: $font--xxl;
+        }
+
+        &__link::before {
+            height: 3px;
+            width: 60px;
+            left: -90px;
+        }
+    
+        &__link {
+            font-size: 2em;
+            letter-spacing: 0.07em;
+            margin-left: 90px;
+        }
+    
+        &__index {
+            bottom: -5%;
+            right: 5%;
+            line-height: 0.5em;
+            font-size: 16em;
+        }
+    }
+}
+
+// Ipad landscape
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+}
+
+// Desktop
+@media (min-width: 1025px) {
+    .info {
+        display: inline-block;
+        height: 100%;
+        width: 40%;
+        z-index: $index-4;
     }
 }
