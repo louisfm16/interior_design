@@ -132,25 +132,36 @@ nav {
 }
 
 // Desktop
-// @media (min-width: 1025px) {
-//     nav {
-//         padding: 0 ($edge-padding * 3);
-//     }
+@media (min-width: 1025px) {
+    nav {
+        padding: 0 ($edge-padding * 3);
+    }
     
-//     .logo {
-//         font-size: 2em;
-//     }
+    .logo {
+        font-size: 2em;
+    }
 
-//     .menu {
-//         border-left: 10px solid $secondary_color--dark;
-        
-//         &__links {
-//             font-size: 2.2em;
-//             margin: 50px 0;
-//         }
-//     }
+    .menu {
+        height: 100%;
+        width: auto;
+        border: none;
+        margin: 0;
+        top: 0;
+        right: $edge-padding;
 
-//     .menu-toggle {
-//         right: ($edge-padding * 3);
-//     }
-// }
+        &__links:first-child {
+            margin-top: 0;
+        }
+
+        &__links {
+            display: inline-block;
+            line-height: $navbar-height;
+            font-size: 1.8em;
+            margin: 0 60px;
+        }
+    }
+
+    .menu-toggle {
+        display: none;
+    }
+}
