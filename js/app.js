@@ -35,11 +35,15 @@ document.addEventListener('DOMContentLoaded', function(){
         SetIndex();
     });
 
+    // CRelatively center images + include parallax
     flkty.on('scroll', function() {
         flkty.slides.forEach(function(slide, i) {
             let img = carouselImgs[i];
+            let halfWidth = (img.width / 2);
             let x = ((slide.target + flkty.x) * -1/3) - slide.outerWidth;
-            img.style[transformProp] = 'translate(' + x + 'px, -50%)';
+            console.log(`================== ${img.style.transform} ========================`);
+            img.style[transformProp] = `translate(${x}px, -50%)`;
+            console.log(`++++++++++++++++++++++ ${img.style[transformProp]} ++++++++++++++++++++++`);
         });
     });
 });
