@@ -39,11 +39,19 @@ document.addEventListener('DOMContentLoaded', function(){
     flkty.on('scroll', function() {
         flkty.slides.forEach(function(slide, i) {
             let img = carouselImgs[i];
-            let halfWidth = (img.width / 2);
-            let x = ((slide.target + flkty.x) * -1/3) - slide.outerWidth;
-            console.log(`================== ${img.style.transform} ========================`);
-            img.style[transformProp] = `translate(${x}px, -50%)`;
-            console.log(`++++++++++++++++++++++ ${img.style[transformProp]} ++++++++++++++++++++++`);
+            // let translateX = parseInt(getComputedStyle(img).transform.split(',')[4]); 
+
+            let x = ((slide.target + flkty.x) * -1/3);
+            // console.log({
+            //     image: img,
+            //     transX: translateX,
+            //     slTarget: slide.target,
+            //     flktyX: flkty.x,
+            //     X: x
+            // });
+
+            img.style[transformProp] = `translateX(${x}px)`;
+            // console.log(`++++++++++++++++++++++ ${img.style[transformProp]} ++++++++++++++++++++++`);
         });
     });
 });
@@ -52,7 +60,7 @@ function Init() {
     menu = document.getElementById('menu');
     menuToggle = document.getElementById('menu-toggle');
     carousel = document.getElementById('carousel');
-    carouselImgs = carousel.querySelectorAll('.carousel__card img');
+    carouselImgs = carousel.querySelectorAll('.carousel__card--container');
     galleryIndex = document.getElementById('info__index');
 
     docStyle = document.documentElement.style;
@@ -72,19 +80,21 @@ function Init() {
     });
 
     // Click events for cards / images
-    for (var i = 0; i < carouselImgs.length; i++) {
-        carouselImgs[i].parentNode.addEventListener("click", function (e) {
-            e.preventDefault();
-            let self = this;
+    // for (var i = 0; i < carouselImgs.length; i++) {
+    //     carouselImgs[i].parentNode.addEventListener("click", function (e) {
+    //         e.preventDefault();
+    //         let self = this;
             
-            // Small delay to allow the default animation of Flickity even when not needed
-            setTimeout(function() {
-                if(!flkty.isAnimating) {
-                    OpenDetails(self);
-                }
-            }, 100);
-        });
-    }
+    //         // Small delay to allow the default animation of Flickity even when not needed
+    //         setTimeout(function() {
+    //             if(!flkty.isAnimating) {
+    //                 OpenDetails(self);
+    //             }
+    //         }, 100);
+    //     });
+
+    //     carouselImgs[i].style.backgroundImage = `url(${carouselImgs[i].getAttribute('data-img')})`;
+    // }
     
     SetIndex();
 

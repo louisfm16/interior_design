@@ -18,19 +18,26 @@
 
     &__card {
         @include v-center;
+
         height: 90%;
         width: 60%;
         margin: 0 15px;
         border-radius: 3px;
-        border: 2px solid $primary_color--dark;
+        border: 5px solid $primary_color--dark;
         overflow: hidden;
         filter: brightness(0.5);
         transition: all 0.3s;
 
-        & > img {
-            @include center;
+        &--container {
+            display: block;
+            position: relative;
             height: 100%;
-            // transform: translate(-50%, -50%) !important;
+            width: 100%;
+
+            & > img {
+                @include center;
+                height: 100%;
+            }
         }
     }
 
