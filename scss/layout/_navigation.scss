@@ -15,15 +15,15 @@ nav {
 .logo {
     display: inline-block;
     font-size: $font--m;
+    font-weight: 100;
     font-family: $secondary_font;
     color: $secondary_color--norm;
-    // color: $tertiary_color--norm;
     line-height: $navbar-height;
 }
 
 .menu {
     background-color: $primary_color--norm;
-    border-left: 5px solid $secondary_color--dark;
+    border-left: 5px solid $tertiary_color--norm;
     position: absolute;
     height: 100vh;
     width: $menu-width;
@@ -33,7 +33,7 @@ nav {
     transition: all 0.1s ease-in;
 
     &__links:first-child {
-        color: $tertiary_color--light;
+        color: $secondary_color--light;
         margin-top: $navbar-height + 15px;
     }
 
@@ -41,15 +41,14 @@ nav {
         text-align: center;
         font-size: $font--m;
         font-weight: 400;
-        color: $tertiary_color--dark;
+        color: $secondary_color--dark;
         margin: 35px 0;
         cursor: pointer;
         transition: all 0.1s ease-in-out;
-        text-shadow: -1px 1px 2px #000;
     }
 
     &__links:hover > a {
-        color: $tertiary_color--light;
+        color: $secondary_color--light;
     }
 }
 
