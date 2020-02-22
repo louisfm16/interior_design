@@ -1,0 +1,24 @@
+footer {
+    display: block;
+    position: absolute;
+    height: 10%;
+    width: 100%;
+    bottom: 0;
+    border: 1px solid white;
+
+    .social {
+        display: inline-block;
+        height: 100%;
+        width: 30%;
+        border: 1px solid red;
+    }
+
+    .social__links {
+        display: inline-block;
+        border: 1px solid blue;
+
+        & > i {
+
+        }
+    }
+}
