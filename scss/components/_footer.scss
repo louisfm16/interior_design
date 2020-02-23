@@ -4,21 +4,29 @@ footer {
     height: 10%;
     width: 100%;
     bottom: 0;
-    border: 1px solid white;
 
     .social {
-        display: inline-block;
+        display: flex;
         height: 100%;
-        width: 30%;
-        border: 1px solid red;
+        width: 20%;
+        justify-content: space-evenly;
+        align-items: center;
     }
 
     .social__links {
         display: inline-block;
-        border: 1px solid blue;
+        color: $secondary_color--dark;
 
         & > i {
-
+            color: inherit;
+            font-size: $font--m;
+            font-size: 1.2em;
         }
+    }
+
+    .social__links:hover {
+        cursor: pointer;
+        color: $secondary_color--light;
+        transition: all 0.1s ease-in-out;
     }
 }

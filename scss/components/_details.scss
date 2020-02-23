@@ -1,28 +1,84 @@
 .details {
-    @include v-center;
-    position: fixed !important;
-    left: 0 !important;
+    display: block;
+    position: absolute;
     height: 100%;
     width: 100%;
     overflow: hidden;
+    pointer-events: all;
     z-index: $index-1;
-    transition: none;
 
-    & > img {
-        // display: none;
+    &__pictures {
         position: absolute;
-        left: 50%;
-        top: 0%;
-        transform: translate(-50%, 0) !important;
-        height: 50vh;
-        z-index: inherit;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: #2f2f2f;
+        transition: all 0.5s ease-in;
+
+        clip-path: polygon(0 0, 55% 0, 35% 100%, 0% 100%);
+    }
+
+    &__carousel {
+        height: 100%;
+        width: 55%;
+    }
+
+    &__card {
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+
+        & > img {
+            @include center;
+            height: 100%;
+        }
+    }
+
+    // ! always hovering due to width of div
+    // &details__pictures:hover {
+    //     clip-path: polygon(0 0, 60% 0, 40% 100%, 0% 100%);
+    //     cursor: pointer;
+    //     z-index: inherit;
+    //     transition: all 0.3s ease-in-out;
+    // }
+
+    // &details__pictures:hover + &__info {
+    //     transition: all 0.3s ease-in-out;
+    //     clip-path: polygon(50% 0, 100% 0, 100% 100%, 30% 100%);
+    // }
+
+    &__break {
+        @include center;
+        left: 45%;
+        height: 120%;
+        z-index: $index-1;
+        width: 5px;
+        background-color: $tertiary_color--norm;
+        transform: translate(-50%, -50%) rotateZ(22deg);
     }
 
     &__info {
         position: absolute;
-        bottom: 0;
-        height: 50vh;
+        right: 0;
+        height: 100%;
         width: 100%;
-        background-color: $primary_color--dark;
+        background-color: #161616;
+        transition: all 0.5s ease-in;
+
+        clip-path: polygon(55% 0, 100% 0, 100% 100%, 35% 100%);
+    }
+}
+
+.details--hidden {
+    // z-index: -1;
+    pointer-events: none;
+
+    .details__pictures {
+        left: -100% !important;
+    }
+
+    .details__info {
+        right: -100% !important;
     }
 }
