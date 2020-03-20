@@ -3,9 +3,12 @@
     position: absolute;
     height: 100%;
     width: 100%;
+    background-color: $tertiary_color--norm;
     overflow: hidden;
     pointer-events: all;
     z-index: $index-1;
+    transition: background-color 0.1s ease-in;
+    transition-delay: 0.2s;
 
     &__pictures {
         position: absolute;
@@ -13,14 +16,14 @@
         height: 100%;
         width: 100%;
         background-color: #2f2f2f;
-        transition: all 0.5s ease-in;
+        transition: all 0.2s;
 
-        clip-path: polygon(0 0, 55% 0, 35% 100%, 0% 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 48.5%, 0% 52.5%);
     }
 
     &__carousel {
-        height: 100%;
-        width: 55%;
+        height: 55%;
+        width: 100%;
     }
 
     &__card {
@@ -35,44 +38,22 @@
         }
     }
 
-    // ! always hovering due to width of div
-    // &details__pictures:hover {
-    //     clip-path: polygon(0 0, 60% 0, 40% 100%, 0% 100%);
-    //     cursor: pointer;
-    //     z-index: inherit;
-    //     transition: all 0.3s ease-in-out;
-    // }
-
-    // &details__pictures:hover + &__info {
-    //     transition: all 0.3s ease-in-out;
-    //     clip-path: polygon(50% 0, 100% 0, 100% 100%, 30% 100%);
-    // }
-
-    &__break {
-        @include center;
-        left: 45%;
-        height: 120%;
-        z-index: $index-1;
-        width: 5px;
-        background-color: $tertiary_color--norm;
-        transform: translate(-50%, -50%) rotateZ(22deg);
-    }
-
     &__info {
         position: absolute;
         right: 0;
         height: 100%;
         width: 100%;
         background-color: #161616;
-        transition: all 0.5s ease-in;
+        transition: all 0.2s;
 
-        clip-path: polygon(55% 0, 100% 0, 100% 100%, 35% 100%);
+        clip-path: polygon(0 53%, 100% 49%, 100% 100%, 0 100%);
     }
 }
 
 .details--hidden {
     // z-index: -1;
     pointer-events: none;
+    background-color: rgba($tertiary_color--norm,0);
 
     .details__pictures {
         left: -100% !important;
@@ -80,5 +61,51 @@
 
     .details__info {
         right: -100% !important;
+    }
+}
+
+.flickity-page-dots {
+    opacity: 0.4;
+    bottom: 50px;
+    // left: -0%;
+}
+
+.flickity-page-dots:hover {
+    opacity: 1;
+    transition: opacity 0.1s ease-in-out;
+}
+
+.flickity-page-dots .dot {
+    width: 18px;
+    height: 18px;
+    opacity: 0.5;
+    background: transparent;
+    border: 2px solid white;
+}
+
+.flickity-page-dots .dot.is-selected {
+    background: white;
+}
+
+// Desktop
+@media (min-width: 1025px) {
+    .details {
+        transition: background-color 0.1s ease-in;
+        transition-delay: 0.5s;
+
+        &__pictures {
+            transition: all 0.5s ease-in;
+            clip-path: polygon(0 0, 55.7% 0, 35.7% 100%, 0% 100%);
+        }
+    
+        &__carousel {
+            height: 100%;
+            width: 55%;
+        }
+    
+        &__info {
+            transition: all 0.5s ease-in;
+            clip-path: polygon(56% 0, 100% 0, 100% 100%, 36% 100%);
+        }
     }
 }

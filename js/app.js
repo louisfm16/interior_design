@@ -76,13 +76,12 @@ function Init() {
     
     flkty2 = new Flickity(detailsCarousel, {
         cellSelector: '.details__card',
-        freeScroll: true,
+        freeScroll: false,
         prevNextButtons: false,
-        pageDots: false,
+        pageDots: true,
         imagesLoaded: true,
         percentPosition: false,
         
-        // freeScroll: false,
         // draggable: false,
         // accessibility: false,
     });
