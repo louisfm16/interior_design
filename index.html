@@ -34,7 +34,7 @@
     </nav>
 
     <!-- Modal for more details panel -->
-    <div class="details details--hidden" id="details">
+    <div class="details " id="details">
         <div class="details__pictures">
             <div class="details__carousel" id="details__carousel">
                 <div class="details__card"><img src="https://www.omegawatches.com/media/catalog/product/o/m/omega-de-ville-tresor-omega-co-axial-master-chronometer-40-mm-43513402102001-prlax-desktop.jpg" alt=""></div>
@@ -43,7 +43,31 @@
             </div>
         </div>
 
-        <div class="details__info"></div>
+        <div class="details__info">
+            <div class="details__info__container">
+                <div class="details__info__title">
+                    <h3 id="details-collection">Collection</h3>
+                    <h3 id="details-name">Title - Lorem ipsum dolor sit amet consectetur</h3>
+                </div>
+                <div class="details__info__pricing">
+                    <hr>
+    
+                    <p>Steel on steel</p>
+    
+                    <span id="details-id">220.10.41.21.10.001</span>
+                    <span id="details-price">$5,700.00</span>
+    
+                    <hr>
+                </div>
+                <div class="details__info__actions">
+                    <div id="details-qty-container">
+                        <label>Qty.</label>
+                        <span id="details-qty-container--minus" class="details__info__actions__style">&minus;</span><input class="details__info__actions__style" type="number" value="1" min="1" max="10"><span id="details-qty-container--plus" class="details__info__actions__style">&plus;</span>
+                    </div>
+                    <span id="details-add2cart">Add to cart</span>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="container">
@@ -88,7 +112,8 @@
         </div>
     </div>
 
-    <footer>
+    <!-- Temporarily hide -->
+    <footer style="display: none;">
         <ul class="social">
             <li class="social__links"><i class="icon-instagram"></i></li>
             <li class="social__links"><i class="icon-twitter"></i></li>
