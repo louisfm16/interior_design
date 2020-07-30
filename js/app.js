@@ -92,7 +92,7 @@ function Init() {
     price = document.getElementById('details-price');
     description = document.getElementById('details-description');
 
-    LoadJSON('../assets/json/watch-data.json', function(data) {
+    LoadJSON('../public/json/watch-data.json', function(data) {
         watchData = JSON.parse(data);
 
         for(let i = 0; i < carouselImgs.length; i++) {
