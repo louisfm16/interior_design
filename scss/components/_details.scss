@@ -1,6 +1,7 @@
 .details {
     @include center;
     display: block;
+    opacity: 1;
     position: absolute;
     height: 100%;
     width: 100%;
@@ -11,8 +12,20 @@
     transition: background-color 0.1s ease-in;
     // transition: all 0.1s ease-in;
     transition-delay: 0.2s;
-    // border: 3px solid $tertiary_color--norm;
-    // border-radius: 5px;
+
+    & #details__close-btn {
+        opacity: 0.3;
+        font-size: 2em;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        z-index: $index-1;
+    }
+
+    & #details__close-btn:hover {
+        opacity: 1;
+        transition: opacity 0.1s ease-in-out;
+    }
 
     &__pictures {
         position: absolute;
@@ -270,6 +283,7 @@
 }
 
 .details--hidden {
+    opacity: 0;
     pointer-events: none;
     background-color: rgba($tertiary_color--norm, 0);
     // border: 0px solid rgba($tertiary_color--norm, 0);
@@ -304,7 +318,7 @@
 }
 
 .flickity-page-dots .dot.is-selected {
-    background: white;
+    background: white !important;
 }
 
 // Desktop
@@ -314,6 +328,8 @@
         transition-delay: 0.5s;
         height: 70%;
         width: 75%;
+        border: 3px solid $tertiary_color--norm;
+        border-radius: 5px;
 
         &__pictures {
             transition: all 0.5s ease-in;

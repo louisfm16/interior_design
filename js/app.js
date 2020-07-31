@@ -6,13 +6,15 @@ let flkty,
     menuOpen = false,
     docStyle,
     transformProp,
-    watchData;
+    watchData,
+    quantity = 1;
 
 // Elements
 let menu,
     menuToggle,
     details,
     detailsCarousel,
+    detailsCloseBtn,
     detailsReadMore,
     detailsReadMoreLink,
     carousel,
@@ -29,7 +31,10 @@ let collection,
     watchType,
     pieceRef,
     price,
-    description;
+    description,
+    minusQty,
+    plusQty,
+    qtyValue;
 
 document.addEventListener('DOMContentLoaded', function(){
     Init();
@@ -72,8 +77,9 @@ function Init() {
     menu = document.getElementById('menu');
     menuToggle = document.getElementById('menu-toggle');
     details = document.getElementById('details');
-    detailsCarousel = document.getElementById('details__carousel');
     carousel = document.getElementById('carousel');
+    detailsCarousel = document.getElementById('details__carousel');
+    detailsCloseBtn = document.getElementById('details__close-btn');
     detailsReadMore = document.getElementById('details-readMore');
     detailsReadMoreLink = document.getElementById('details-readMore--link');
     carouselImgs = carousel.querySelectorAll('.carousel__card--container');
@@ -91,6 +97,9 @@ function Init() {
     pieceRef = document.getElementById('details-reference');
     price = document.getElementById('details-price');
     description = document.getElementById('details-description');
+    minusQty = document.getElementById('details-qty-container--minus');
+    plusQty = document.getElementById('details-qty-container--plus');
+    qtyValue = document.getElementById('details-qty-container--value');
 
     LoadJSON('./../public/json/watch-data.json', function(data) {
         watchData = JSON.parse(data);
@@ -154,9 +163,29 @@ function Init() {
         CloseModalBackground();
     });
 
+
+    detailsCloseBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        CloseCurrentModal();
+        CloseModalBackground();
+    });
+
     detailsReadMoreLink.addEventListener('click', function(e) {
         e.preventDefault();
         ToggleDetailsReadMore();
+    });
+
+    minusQty.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        SetQuantity(quantity - 1);
+    });
+
+    plusQty.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        SetQuantity(quantity + 1);
     });
     
     SetIndex();
@@ -195,6 +224,7 @@ function CloseDetails() {
 
     // Clear details / Remove old text
     ClearDetails();
+    flkty2.select(0);
 }
 
 function PopulateDetails() {
@@ -231,6 +261,8 @@ function ClearDetails() {
     pieceRef.innerHTML = '';
     price.innerHTML = '';
     description.innerHTML = '';
+
+    SetQuantity(1);
 }
 
 function ToggleDetailsReadMore() {
@@ -241,6 +273,20 @@ function ToggleDetailsReadMore() {
     } else {
         detailsReadMoreLink.innerHTML = "Read more";
     }
+}
+
+function SetQuantity(val) {
+    if(val <= 1) {
+        quantity = 1;
+    }
+    else if(val >= 10) {
+        quantity = 10;
+    }
+    else {
+        quantity = val;
+    }
+
+    qtyValue.setAttribute('value', quantity);
 }
 
 function CloseCurrentModal() {
