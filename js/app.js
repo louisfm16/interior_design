@@ -1,3 +1,5 @@
+// #region All Variables
+// #region GeneraL Variables 
 let flkty,
     flkty2,
     currIndex = 0,
@@ -8,8 +10,9 @@ let flkty,
     transformProp,
     watchData,
     quantity = 1;
+// #endregion GeneraL Variables 
 
-// Elements
+// #region Elements
 let menu,
     menuToggle,
     details,
@@ -17,11 +20,14 @@ let menu,
     detailsCloseBtn,
     detailsReadMore,
     detailsReadMoreLink,
+    mainTitle,
+    mainLearnMore,
     carousel,
     carouselImgs,
     modalBackground;
+// #endregion Elements
 
-// Details id's
+// #region Details id's
 let collection,
     pieceName,
     material,
@@ -35,21 +41,11 @@ let collection,
     minusQty,
     plusQty,
     qtyValue;
+// #endregion Details id's
+// #endregion All Variables
 
 document.addEventListener('DOMContentLoaded', function(){
     Init();
-
-    // Show / Hide menu button for mobile
-    menuToggle.addEventListener('click', function() {
-        if(!menuOpen) { // Menu is off so lets turn it on
-            menu.classList.remove('menu--hidden');
-        } 
-        else if(menuOpen) { // Menu is on so lets turn it off
-            menu.classList.add('menu--hidden');
-        }
-
-        menuOpen = !menuOpen;
-    });
 
     // Carousel
     flkty.on('staticClick', function( event, pointer, cellElement, cellIndex ) {
@@ -60,6 +56,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
     flkty.on('change', function() {
         SetIndex();
+        ChangeCollectionName();
     });
 
     // Relatively center images + include parallax
@@ -74,16 +71,21 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 
 function Init() {
+    // ! Looks bad I know, sorry :(
+    // ************************************* Elements *************************************
+    // #region Variable Initialization
     menu = document.getElementById('menu');
     menuToggle = document.getElementById('menu-toggle');
-    details = document.getElementById('details');
+    mainTitle = document.getElementById('info__title');
+    mainLearnMore = document.getElementById('info__link');
     carousel = document.getElementById('carousel');
+    carouselImgs = carousel.querySelectorAll('.carousel__card--container');
+    galleryIndex = document.getElementById('info__index');
+    details = document.getElementById('details');
     detailsCarousel = document.getElementById('details__carousel');
     detailsCloseBtn = document.getElementById('details__close-btn');
     detailsReadMore = document.getElementById('details-readMore');
     detailsReadMoreLink = document.getElementById('details-readMore--link');
-    carouselImgs = carousel.querySelectorAll('.carousel__card--container');
-    galleryIndex = document.getElementById('info__index');
     modalBackground = document.getElementById('modal-background');
 
     // Details id's
@@ -100,13 +102,13 @@ function Init() {
     minusQty = document.getElementById('details-qty-container--minus');
     plusQty = document.getElementById('details-qty-container--plus');
     qtyValue = document.getElementById('details-qty-container--value');
+    // #endregion Variable Initialization
 
     LoadJSON('./../public/json/watch-data.json', function(data) {
         watchData = JSON.parse(data);
 
-        for(let i = 0; i < carouselImgs.length; i++) {
-            carouselImgs.item(i).getElementsByTagName('img')[0].setAttribute('src', watchData[i].images[0]);
-        }
+        PopulateMainCarousel();
+        ChangeCollectionName();
     });
 
     docStyle = document.documentElement.style;
@@ -139,16 +141,15 @@ function Init() {
         // accessibility: false,
     });
 
+    // ************************************* Event Listeners *************************************
+    // #region Event Listeners
     // Click events for cards / images
     for (var i = 0; i < carouselImgs.length; i++) {
-        carouselImgs[i].parentNode.addEventListener("click", function (e) {
-            e.preventDefault();
-            let self = this;
-            
+        carouselImgs[i].parentNode.addEventListener('click', function() {
             // Small delay to allow the default animation of Flickity even when not needed
             setTimeout(function() {
                 if(!flkty.isAnimating) {
-                    OpenDetails(self);
+                    OpenDetails();
                 }
             }, 100);
         });
@@ -156,37 +157,45 @@ function Init() {
         carouselImgs[i].style.backgroundImage = `url(${carouselImgs[i].getAttribute('data-img')})`;
     }
 
-    modalBackground.addEventListener('click', function(e) {
+    mainLearnMore.addEventListener('click', function(e) {
         e.preventDefault();
+        OpenDetails();
+    });
 
+    modalBackground.addEventListener('click', function() {
         CloseCurrentModal();
         CloseModalBackground();
     });
 
-
-    detailsCloseBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-
+    detailsCloseBtn.addEventListener('click', function() {
         CloseCurrentModal();
         CloseModalBackground();
     });
 
-    detailsReadMoreLink.addEventListener('click', function(e) {
-        e.preventDefault();
+    detailsReadMoreLink.addEventListener('click', function() {
         ToggleDetailsReadMore();
     });
 
-    minusQty.addEventListener('click', function(e) {
-        e.preventDefault();
-
+    minusQty.addEventListener('click', function() {
         SetQuantity(quantity - 1);
     });
 
-    plusQty.addEventListener('click', function(e) {
-        e.preventDefault();
-
+    plusQty.addEventListener('click', function() {
         SetQuantity(quantity + 1);
     });
+
+    // Show / Hide menu button for mobile
+    menuToggle.addEventListener('click', function() {
+        if(!menuOpen) { // Menu is off so lets turn it on
+            menu.classList.remove('menu--hidden');
+        } 
+        else if(menuOpen) { // Menu is on so lets turn it off
+            menu.classList.add('menu--hidden');
+        }
+
+        menuOpen = !menuOpen;
+    });
+    // #endregion Event Listeners
     
     SetIndex();
 }
@@ -194,6 +203,17 @@ function Init() {
 function SetIndex() {
     currIndex = flkty.selectedIndex;
     galleryIndex.innerHTML = `0${(currIndex + 1)}`;
+}
+
+function ChangeCollectionName() {
+    mainTitle.style.opacity = 0;
+    mainTitle.style.maxHeight = '100px';
+
+    setTimeout(function() {
+        mainTitle.innerHTML = watchData[currIndex].collection;
+        mainTitle.style.opacity = 1;
+        mainTitle.style.maxHeight = '1000px';
+    }, 250);
 }
 
 function OpenModalBackground() {
@@ -250,6 +270,18 @@ function PopulateDetails() {
     price.innerHTML = `$${NumWithCommas(currWatch.price)}.00`;
 }
 
+function PopulateMainCarousel() {
+    for(let i = 0; i < carouselImgs.length; i++) {
+        // Grab the img element itself
+        let img = carouselImgs.item(i).getElementsByTagName('img')[0];
+
+        // Change its src attribute
+        img.setAttribute('src', watchData[i].images[0]);
+    }
+
+    // TODO: Watch title insertion / Maybe...
+}
+
 function ClearDetails() {
     collection.innerHTML = '';
     pieceName.innerHTML = '';
@@ -301,6 +333,7 @@ function CloseCurrentModal() {
     currModal = undefined;
 }
 
+// #region Helper Functions
 function LoadJSON(url, callback) {   
     let xobj = new XMLHttpRequest();
 
@@ -320,3 +353,4 @@ function LoadJSON(url, callback) {
 function NumWithCommas(num) {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+// #endregion Helper Functions

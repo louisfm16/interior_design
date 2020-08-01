@@ -17,8 +17,9 @@
         opacity: 0.3;
         font-size: 2em;
         position: absolute;
-        top: 15px;
-        right: 15px;
+        top: 0;
+        right: 0;
+        padding: 15px;
         z-index: $index-1;
     }
 
@@ -192,8 +193,12 @@
             margin-top: .5em;
             letter-spacing: 0.03em;
             line-height: 1.3em;
+            overflow-wrap: break-word;
             word-wrap: break-word;
             word-break: keep-all;
+            -webkit-hyphens: auto;
+            -moz-hyphens: auto;
+            hyphens: auto;
             text-shadow: -1px 1px 0px #545454;
         }
     }

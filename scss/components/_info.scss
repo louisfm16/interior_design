@@ -9,12 +9,20 @@
 
     &__title {
         position: inherit;
-        font-size: $font--l;
         color: $tertiary_color--norm;
         line-height: 1.2em;
-        letter-spacing: 0.07em;
         padding-top: 30px;
-        // font-family: $secondary_font;
+        font-size: 3em;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        transition: all 0.25s ease-in-out;
+        max-height: 1000px;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: keep-all;
+        -webkit-hyphens: auto;
+        -moz-hyphens: auto;
+        hyphens: auto;
     }
 
     &__link::before {

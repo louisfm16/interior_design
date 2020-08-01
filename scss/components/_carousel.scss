@@ -35,16 +35,7 @@
 
             & > img {
                 @include center;
-                height: 103%;
-            }
-        }
-
-        // TODO: add / animate in watch name on hover
-        &--container:hover {
-            & > img {
                 height: 100%;
-                filter: blur(2px);
-                transition: all 0.3s ease-in-out;
             }
         }
     }
