@@ -104,7 +104,7 @@ function Init() {
     qtyValue = document.getElementById('details-qty-container--value');
     // #endregion Variable Initialization
 
-    LoadJSON('./../public/json/watch-data.json', function(data) {
+    LoadJSON('https://raw.githubusercontent.com/louisfm16/fake-watch-database/master/watch-data.json', function(data) {
         watchData = JSON.parse(data);
 
         PopulateMainCarousel();
