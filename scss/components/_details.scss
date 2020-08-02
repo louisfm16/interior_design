@@ -110,10 +110,6 @@
             // border-color: $tertiary_color--dark; // meh, maybe
             border-color: $primary_color--light;
         }
-        
-        // & > hr:last-child {
-        //     margin-top: 30px;
-        // }
 
         & span {
             display: block;
@@ -122,14 +118,6 @@
             color: $secondary_color--norm;
             letter-spacing: normal;
             text-shadow: -1px 1px 0px #545454;
-        }
-
-        & #details-material {
-            
-        }
-
-        & #details-reference {
-            
         }
 
         & #details-readMore--link {
@@ -149,22 +137,6 @@
         & .readMore--hidden {
             max-height: 0px !important;
             margin: 0 !important;
-        }
-
-        & #details-glass {
-            
-        }
-
-        & #details-back {
-            
-        }
-
-        & #details-diameter {
-            
-        }
-
-        & #details-type {
-            
         }
 
         & #details-price {

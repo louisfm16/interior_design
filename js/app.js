@@ -9,7 +9,8 @@ let flkty,
     docStyle,
     transformProp,
     watchData,
-    quantity = 1;
+    quantity = 1,
+    cart;
 // #endregion GeneraL Variables 
 
 // #region Elements
@@ -40,7 +41,8 @@ let collection,
     description,
     minusQty,
     plusQty,
-    qtyValue;
+    qtyValue,
+    add2Cart;
 // #endregion Details id's
 // #endregion All Variables
 
@@ -102,6 +104,9 @@ function Init() {
     minusQty = document.getElementById('details-qty-container--minus');
     plusQty = document.getElementById('details-qty-container--plus');
     qtyValue = document.getElementById('details-qty-container--value');
+    add2Cart = document.getElementById('details-add2cart');
+
+    cart = JSON.parse(window.sessionStorage.getItem('cart')) || [];
     // #endregion Variable Initialization
 
     LoadJSON('https://raw.githubusercontent.com/louisfm16/fake-watch-database/master/watch-data.json', function(data) {
@@ -182,6 +187,47 @@ function Init() {
 
     plusQty.addEventListener('click', function() {
         SetQuantity(quantity + 1);
+    });
+
+    add2Cart.addEventListener('click', function(e) {
+        e.preventDefault();
+        add2Cart.style.pointerEvents = 'none';
+
+        // The index it was found at
+        let foundAt = undefined;
+
+        // Check if watch is already in cart
+        cart.forEach(function(item, index) {
+            if(item.watchIndex == currIndex) {
+                foundAt = index;
+                return false;
+            }
+        });
+
+        if(cart.length <= 0) {
+            cart.push({
+                watchIndex: currIndex,
+                qty: parseFloat(qtyValue.getAttribute('value'))
+            });
+        } else if(foundAt != undefined) {
+            let newQty = cart[foundAt].qty + parseFloat(qtyValue.getAttribute('value'));
+
+            if(newQty >= 10) newQty = 10;
+            cart[foundAt].qty = newQty;
+        } else {
+            cart.push({
+                watchIndex: currIndex,
+                qty: parseFloat(qtyValue.getAttribute('value'))
+            });
+        }
+
+        // TODO: Un-comment on release or when fully implemented
+        // let JSONCart = JSON.stringify(cart);
+        // window.sessionStorage.setItem('cart', JSONCart);
+
+        SetQuantity(1);
+        // TODO: Maybe edit the wait time
+        setTimeout(function() {add2Cart.style.pointerEvents = 'auto';}, 500);
     });
 
     // Show / Hide menu button for mobile
@@ -278,8 +324,6 @@ function PopulateMainCarousel() {
         // Change its src attribute
         img.setAttribute('src', watchData[i].images[0]);
     }
-
-    // TODO: Watch title insertion / Maybe...
 }
 
 function ClearDetails() {
