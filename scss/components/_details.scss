@@ -13,6 +13,29 @@
     // transition: all 0.1s ease-in;
     transition-delay: 0.2s;
 
+    & #details__feedback {
+        @include h-center;
+        white-space: nowrap;
+        top: 10px;
+        border: 1px solid $tertiary_color--norm;
+        background-color: #161616;
+        color: $tertiary_color--norm;
+        border-radius: 5px;
+        text-align: center;
+        font-size: 1.2em;
+        padding: 5px 10px;
+        z-index: $index-1;
+        transition: all 0.3s ease-in-out;
+        text-shadow: 0 1px 2px black;
+
+        // FIXME: Still testing how I like this
+        box-shadow: -2px 1px 6px 0px black;
+    }
+
+    & .details__feedback--hidden {
+        top: -100px !important;
+    }
+
     & #details__close-btn {
         opacity: 0.3;
         font-size: 2em;
@@ -194,6 +217,12 @@
             vertical-align: top;
             font-size: $font--xs;
             font-weight: bold;
+
+            transition: all 0.1s linear;
+        }
+
+        &__style--clicked {
+            margin-top: 2px;
         }
 
         #details-qty-container {
@@ -229,6 +258,9 @@
                 appearance: none;
                 box-shadow: none;
                 margin: 0 2px;
+
+                // FIXME: change to auto/normal on desktop
+                pointer-events: none;
             }
             
             & > input[type=number]:focus {
@@ -244,7 +276,8 @@
             // Anything inside is in focus, affect the parent
         }
 
-        & > #details-add2cart {
+        & #details-add2cart {
+            position: relative;
             border: 1px solid $tertiary_color--norm;
             color: $tertiary_color--norm;
             border-radius: 5px;
@@ -253,7 +286,6 @@
             width: 45%;
             text-align: center;
             line-height: 40px;
-            font-size: 1.35em;
             font-size: 1.4em;
         }
     }

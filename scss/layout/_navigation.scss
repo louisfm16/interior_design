@@ -1,5 +1,5 @@
 $menu-width: 45%;  // TODO: Will be a set value based upon font-size
-$hamburger-size: 1.5em;
+$hamburger-size: 2.5em;
 $edge-padding: 10px;
 
 nav {
@@ -56,46 +56,65 @@ nav {
     right: -$menu-width;
 }
 
-// TODO: This will be an animated icon
 .menu-toggle {
     display: inline-block;
     position: absolute;
     top: $navbar-height / 2;
     right: $edge-padding;
     height: $hamburger-size;
-    width: $hamburger-size;
+    width: $hamburger-size - ($hamburger-size * .25);
     transform: translate(-50%, -50%);
     z-index: $index-1;
     cursor: pointer;
 
-    &__icon::before {
-        content: "";
-        position: absolute;
-        top: -$hamburger-size / 2.25;
-        height: 0.2em;
-        width: 50%;
-        background-color: inherit;
-        border-radius: 5px;
-    }
-
     &__icon {
         position: absolute;
-        @include v-center;
-        height: 0.2em;
+        top: 50%;
+        left: 50%;
+        height: 10%;
+        border-radius: 2px;
         width: 100%;
-        border-radius: 5px;
-        background-color: $tertiary_color--light;
+        background-color: #fff;
+        transform: translate(-50%, -50%);
+        transition: all 0.1s ease-in-out;
+    }
+    
+    &__icon::before, &__icon::after {
+        content: "";
+        position: absolute;
+        border-radius: 2px;
+        height: 100%;
+        width: 50%;
+        background-color: #fff;
+        transition: all 0.1s ease-in-out;
+    }
+    
+    &__icon::before {
+        top: -300%;
+        left: 0;
     }
 
     &__icon::after {
-        content: "";
-        position: absolute;
-        top: $hamburger-size / 2.25;
+        bottom: -300%;
         right: 0;
-        height: 0.2em;
-        width: 50%;
-        background-color: inherit;
-        border-radius: 5px;
+    }
+}
+
+.menu-toggle--close {
+    & > .menu-toggle__icon {
+        transform: translate(-50%, -50%) rotatez(-45deg);
+    }
+    
+    & > .menu-toggle__icon::before {
+        top: -190%;
+        left: 50%;
+        transform: translatex(-50%) rotatez(90deg);
+    }
+    
+    & > .menu-toggle__icon::after {
+        bottom: -190%;
+        right: 50%;
+        transform: translatex(50%) rotatez(90deg);
     }
 }
 

@@ -5,7 +5,6 @@ let flkty,
     currIndex = 0,
     currModal = undefined,
     galleryIndex,
-    menuOpen = false,
     docStyle,
     transformProp,
     watchData,
@@ -42,7 +41,8 @@ let collection,
     minusQty,
     plusQty,
     qtyValue,
-    add2Cart;
+    add2Cart,
+    detailsFeedback;
 // #endregion Details id's
 // #endregion All Variables
 
@@ -105,6 +105,7 @@ function Init() {
     plusQty = document.getElementById('details-qty-container--plus');
     qtyValue = document.getElementById('details-qty-container--value');
     add2Cart = document.getElementById('details-add2cart');
+    detailsFeedback = document.getElementById('details__feedback');
 
     cart = JSON.parse(window.sessionStorage.getItem('cart')) || [];
     // #endregion Variable Initialization
@@ -183,18 +184,36 @@ function Init() {
 
     minusQty.addEventListener('click', function() {
         SetQuantity(quantity - 1);
+        
+        minusQty.classList.add('details__info__actions__style--clicked');
+        setTimeout(function() {
+            minusQty.classList.remove('details__info__actions__style--clicked');
+        }, 100);
     });
 
     plusQty.addEventListener('click', function() {
         SetQuantity(quantity + 1);
+
+        plusQty.classList.add('details__info__actions__style--clicked');
+        setTimeout(function() {
+            plusQty.classList.remove('details__info__actions__style--clicked');
+        }, 100);
     });
 
     add2Cart.addEventListener('click', function(e) {
         e.preventDefault();
+
+        add2Cart.classList.add('details__info__actions__style--clicked');
+        setTimeout(function() {
+            add2Cart.classList.remove('details__info__actions__style--clicked');
+        }, 100);
+
         add2Cart.style.pointerEvents = 'none';
 
         // The index it was found at
         let foundAt = undefined;
+        let newMax = parseInt(qtyValue.getAttribute('max'));
+        let msg = 'Cart updated successfully!';
 
         // Check if watch is already in cart
         cart.forEach(function(item, index) {
@@ -204,42 +223,53 @@ function Init() {
             }
         });
 
+        // Cart is empty
         if(cart.length <= 0) {
             cart.push({
                 watchIndex: currIndex,
                 qty: parseFloat(qtyValue.getAttribute('value'))
             });
-        } else if(foundAt != undefined) {
-            let newQty = cart[foundAt].qty + parseFloat(qtyValue.getAttribute('value'));
+            newMax -= cart[0].qty;
+        } // Already in cart 
+        else if(foundAt != undefined) {
+            let newQty = cart[foundAt].qty + parseInt(qtyValue.getAttribute('value'));
 
-            if(newQty >= 10) newQty = 10;
+            if(newQty > 10) {
+                newQty = 10;
+                msg = 'Max quantity reached!';
+            }
             cart[foundAt].qty = newQty;
-        } else {
+            newMax -= cart[foundAt].qty;
+        } // New Item to add
+        else {
             cart.push({
                 watchIndex: currIndex,
                 qty: parseFloat(qtyValue.getAttribute('value'))
             });
+            newMax -= cart[cart.length - 1].qty;
         }
+
+        if(newMax <= 0) newMax = 1;
+        qtyValue.setAttribute('max', newMax);
 
         // TODO: Un-comment on release or when fully implemented
         // let JSONCart = JSON.stringify(cart);
         // window.sessionStorage.setItem('cart', JSONCart);
 
+        detailsFeedback.innerHTML = msg;
+        detailsFeedback.classList.remove('details__feedback--hidden');
+
         SetQuantity(1);
-        // TODO: Maybe edit the wait time
-        setTimeout(function() {add2Cart.style.pointerEvents = 'auto';}, 500);
+        setTimeout(function() {
+            add2Cart.style.pointerEvents = 'auto';
+            detailsFeedback.classList.add('details__feedback--hidden');
+        }, 1000);
     });
 
     // Show / Hide menu button for mobile
     menuToggle.addEventListener('click', function() {
-        if(!menuOpen) { // Menu is off so lets turn it on
-            menu.classList.remove('menu--hidden');
-        } 
-        else if(menuOpen) { // Menu is on so lets turn it off
-            menu.classList.add('menu--hidden');
-        }
-
-        menuOpen = !menuOpen;
+        menu.classList.toggle('menu--hidden');
+        menuToggle.classList.toggle('menu-toggle--close');
     });
     // #endregion Event Listeners
     
@@ -289,6 +319,8 @@ function CloseDetails() {
     slider.classList.remove('flickity-slider--details');
 
     // Clear details / Remove old text
+    
+    qtyValue.setAttribute('max', 10);
     ClearDetails();
     flkty2.select(0);
 }
@@ -314,6 +346,17 @@ function PopulateDetails() {
     description.innerHTML = currWatch.description;
 
     price.innerHTML = `$${NumWithCommas(currWatch.price)}.00`;
+
+    //  Check if watch already in cart
+    cart.forEach(function(item, index) {
+        if(item.watchIndex == currIndex) {
+            let max = (10 - cart[index].qty);
+            if(max <= 0) max = 1;
+
+            qtyValue.setAttribute('max', max);
+            return false;
+        }
+    });
 }
 
 function PopulateMainCarousel() {
@@ -352,11 +395,13 @@ function ToggleDetailsReadMore() {
 }
 
 function SetQuantity(val) {
+    let max = parseInt(qtyValue.getAttribute('max'));
+
     if(val <= 1) {
         quantity = 1;
     }
-    else if(val >= 10) {
-        quantity = 10;
+    else if(val >= max) {
+        quantity = max;
     }
     else {
         quantity = val;
