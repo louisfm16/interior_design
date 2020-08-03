@@ -56,6 +56,14 @@ nav {
     right: -$menu-width;
 }
 
+.modal-background--menu {
+    top: 0 !important;
+    left: 0 !important;
+    transform: none !important;
+    // width: (100% - $menu-width);
+    width: 55% !important;
+}
+
 .menu-toggle {
     display: inline-block;
     position: absolute;
@@ -74,9 +82,10 @@ nav {
         height: 10%;
         border-radius: 2px;
         width: 100%;
-        background-color: #fff;
+        background-color: $tertiary_color--norm;
         transform: translate(-50%, -50%);
-        transition: all 0.1s ease-in-out;
+        transition: all 0.2s ease-in-out;
+        text-shadow: -1px 1px 0 #000;
     }
     
     &__icon::before, &__icon::after {
@@ -85,8 +94,9 @@ nav {
         border-radius: 2px;
         height: 100%;
         width: 50%;
-        background-color: #fff;
-        transition: all 0.1s ease-in-out;
+        background-color: $tertiary_color--norm;
+        transition: all 0.2s ease-in-out;
+        text-shadow: -1px 1px 2px #000;
     }
     
     &__icon::before {

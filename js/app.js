@@ -5,6 +5,7 @@ let flkty,
     currIndex = 0,
     currModal = undefined,
     galleryIndex,
+    menuOpen = false,
     docStyle,
     transformProp,
     watchData,
@@ -268,8 +269,23 @@ function Init() {
 
     // Show / Hide menu button for mobile
     menuToggle.addEventListener('click', function() {
-        menu.classList.toggle('menu--hidden');
-        menuToggle.classList.toggle('menu-toggle--close');
+        if(!menuOpen) { // Menu is off so lets turn it on
+            currModal = 'menu';
+            modalBackground.classList.add('modal-background--menu');
+            OpenModalBackground();
+
+            menu.classList.remove('menu--hidden');
+            menuToggle.classList.add('menu-toggle--close');
+        } 
+        else if(menuOpen) { // Menu is on so lets turn it off
+            menu.classList.add('menu--hidden');
+            menuToggle.classList.remove('menu-toggle--close');
+            
+            modalBackground.classList.remove('modal-background--menu');
+            CloseModalBackground();
+        }
+
+        menuOpen = !menuOpen;
     });
     // #endregion Event Listeners
     
@@ -414,6 +430,9 @@ function CloseCurrentModal() {
     switch(currModal) {
         case undefined:
             return;
+        case 'menu':
+            SimulateClick(menuToggle);
+            break;
         case 'details':
             CloseDetails();
             break;
@@ -441,5 +460,17 @@ function LoadJSON(url, callback) {
 
 function NumWithCommas(num) {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function SimulateClick(element) {
+	// Create our event (with options)
+	let evt = new MouseEvent('click', {
+		bubbles: true,
+		cancelable: true,
+		view: window
+    });
+    
+	// If cancelled, don't dispatch our event
+	let canceled = !element.dispatchEvent(evt);
 }
 // #endregion Helper Functions
