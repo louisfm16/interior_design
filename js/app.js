@@ -10,7 +10,8 @@ let flkty,
     transformProp,
     watchData,
     quantity = 1,
-    cart;
+    cart,
+    isScrolling = false;
 // #endregion GeneraL Variables 
 
 // #region Elements
@@ -25,7 +26,9 @@ let menu,
     mainLearnMore,
     carousel,
     carouselImgs,
-    modalBackground;
+    modalBackground,
+    aboutButton,
+    aboutModal;
 // #endregion Elements
 
 // #region Details id's
@@ -64,6 +67,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
     // Relatively center images + include parallax
     flkty.on('scroll', function() {
+        // FIXME: Performance issue on firefox
         flkty.slides.forEach(function(slide, i) {
             let img = carouselImgs[i];
             let x = ((slide.target + flkty.x) * -1/3);
@@ -90,6 +94,8 @@ function Init() {
     detailsReadMore = document.getElementById('details-readMore');
     detailsReadMoreLink = document.getElementById('details-readMore--link');
     modalBackground = document.getElementById('modal-background');
+    aboutButton = document.getElementById('about-button');
+    aboutModal = document.getElementById('about-modal');
 
     // Details id's
     collection = document.getElementById('details-collection');
@@ -287,6 +293,26 @@ function Init() {
 
         menuOpen = !menuOpen;
     });
+
+    aboutButton.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        aboutModal.classList.remove('about-modal--hidden');
+    });
+
+    aboutModal.addEventListener('scroll', function() {
+        if(isScrolling) {
+            return;
+        } else {  
+            isScrolling = true;
+
+            
+            
+            setTimeout(function() {
+                isScrolling = false;
+            }, 1000);
+        }
+    });
     // #endregion Event Listeners
     
     SetIndex();
@@ -472,5 +498,26 @@ function SimulateClick(element) {
     
 	// If cancelled, don't dispatch our event
 	let canceled = !element.dispatchEvent(evt);
+}
+
+function IsElementInViewport(element, viewport) {
+    let elRect = element.getBoundingClientRect();
+    let viewRect = viewport.getBoundingClientRect();
+
+    let offset = (elRect.bottom - elRect.top) * 0.4;
+
+    console.table({
+        top: (elRect.top + offset) >= viewRect.top,
+        left: elRect.left >= viewRect.left,
+        bottom: (elRect.bottom - offset) <= viewRect.bottom,
+        right: elRect.right <= viewRect.right
+    });
+
+    return (
+        (elRect.top + offset) >= viewRect.top &&
+        elRect.left >= viewRect.left &&
+        (elRect.bottom - offset) <= viewRect.bottom &&
+        elRect.right <= viewRect.right
+    );
 }
 // #endregion Helper Functions

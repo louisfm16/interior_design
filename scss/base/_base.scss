@@ -27,29 +27,6 @@ h1, h2, h3, h4, h5, h6 {
     height: 100%;
 }
 
-#modal-background {
-    display: block;
-    @include center;
-    height: 100vh;
-    width: 100vw;
-    background-color: black;
-    opacity: 0.8;
-    z-index: $index-1;
-}
-
-// #modal-background__close-btn {
-//     font-size: 3em;
-//     position: absolute;
-//     top: 50px;
-//     right: 50px;
-//     z-index: 600;
-// }
-
-.modal-background--hidden {
-    opacity: 0 !important;
-    pointer-events: none;
-}
-
 // Flickity styling workarounds
 .flickity-viewport {
     overflow: visible !important;

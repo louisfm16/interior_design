@@ -18,14 +18,14 @@
 
     &__card {
         @include v-center;
-
         height: 90%;
         width: 60%;
         margin: 0 15px;
         border: 4px solid rgba($tertiary_color--norm, 0.6);
         overflow: hidden;
+        // FIXME: Firefox lag
         filter: brightness(0.5);
-        transition: all 0.3s;
+        transition: all 0.3s linear;
 
         &--container {
             display: block;
@@ -41,6 +41,7 @@
     }
 
     &__card.is-selected {
+        // FIXME: Firefox lag
         filter: brightness(1.1);
         border-color: $tertiary_color--norm;
     }
