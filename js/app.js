@@ -11,7 +11,7 @@ let flkty,
     watchData,
     quantity = 1,
     cart,
-    isScrolling = false;
+    isScrolling = false; // Used only for about modal
 // #endregion GeneraL Variables 
 
 // #region Elements
@@ -28,7 +28,9 @@ let menu,
     carouselImgs,
     modalBackground,
     aboutButton,
-    aboutModal;
+    aboutModal,
+    aboutContainers,
+    aboutCloseBtn;
 // #endregion Elements
 
 // #region Details id's
@@ -96,6 +98,8 @@ function Init() {
     modalBackground = document.getElementById('modal-background');
     aboutButton = document.getElementById('about-button');
     aboutModal = document.getElementById('about-modal');
+    aboutContainers = document.querySelectorAll('.about-modal__container');
+    aboutCloseBtn = document.getElementById('about-modal__close-btn');
 
     // Details id's
     collection = document.getElementById('details-collection');
@@ -297,7 +301,14 @@ function Init() {
     aboutButton.addEventListener('click', function(e) {
         e.preventDefault();
 
+        OpenModalBackground();
         aboutModal.classList.remove('about-modal--hidden');
+        currModal = 'about';
+    });
+
+    aboutCloseBtn.addEventListener('click', function() {
+        SimulateClick(modalBackground);
+        if(menuOpen) SimulateClick(menuToggle); // For desktop
     });
 
     aboutModal.addEventListener('scroll', function() {
@@ -306,11 +317,19 @@ function Init() {
         } else {  
             isScrolling = true;
 
-            
+            for(let i = 0; i < aboutContainers.length; i++) {
+                if(IsElementInViewport(aboutContainers[i], aboutModal)) 
+                {
+                    aboutContainers[i].firstElementChild.classList.add('about-modal__picture--show');
+                    // break;
+                } else {
+                    aboutContainers[i].firstElementChild.classList.remove('about-modal__picture--show');
+                }
+            }
             
             setTimeout(function() {
                 isScrolling = false;
-            }, 1000);
+            }, 10);
         }
     });
     // #endregion Event Listeners
@@ -462,6 +481,11 @@ function CloseCurrentModal() {
         case 'details':
             CloseDetails();
             break;
+        case 'about':
+            aboutModal.scrollTo(0,0);
+            aboutModal.classList.add('about-modal--hidden');
+            currModal = undefined;
+            break;
     }
 
     currModal = undefined;
@@ -504,19 +528,21 @@ function IsElementInViewport(element, viewport) {
     let elRect = element.getBoundingClientRect();
     let viewRect = viewport.getBoundingClientRect();
 
-    let offset = (elRect.bottom - elRect.top) * 0.4;
+    // FIXME: Mess around with the values + make them adjustable via arguments
+    let topOffset = (elRect.bottom - elRect.top) * 0.4;
+    let bottomOffset = (elRect.bottom - elRect.top) * 0.6;
 
-    console.table({
-        top: (elRect.top + offset) >= viewRect.top,
-        left: elRect.left >= viewRect.left,
-        bottom: (elRect.bottom - offset) <= viewRect.bottom,
-        right: elRect.right <= viewRect.right
-    });
+    // console.table({
+    //     top: (elRect.top + topOffset) >= viewRect.top,
+    //     left: elRect.left >= viewRect.left,
+    //     bottom: (elRect.bottom - bottomOffset) <= viewRect.bottom,
+    //     right: elRect.right <= viewRect.right
+    // });
 
     return (
-        (elRect.top + offset) >= viewRect.top &&
+        (elRect.top + topOffset) >= viewRect.top &&
         elRect.left >= viewRect.left &&
-        (elRect.bottom - offset) <= viewRect.bottom &&
+        (elRect.bottom - bottomOffset) <= viewRect.bottom &&
         elRect.right <= viewRect.right
     );
 }
