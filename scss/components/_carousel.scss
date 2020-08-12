@@ -48,22 +48,6 @@
 }
 
 // * Media Queries
-
-// Ipad portrait
-@media (min-width: 768px) and (max-width: 1024px) {
-    .carousel {
-        &__card {
-            width: 50%;
-            margin: 0 20px;
-        }
-    }
-}
-
-// Ipad landscape
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-
-}
-
 // Desktop
 @media (min-width: 1025px) {
     .carousel {

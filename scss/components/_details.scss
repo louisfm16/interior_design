@@ -351,15 +351,89 @@
         }
     
         &__info {
+            outline: 1px solid;
             transition: all 0.5s ease-in;
             clip-path: polygon(56% 0, 100% 0, 100% 100%, 36% 100%);
             padding: 0;
 
             &__container {
+                // outline: 1px solid;
                 @include v-center;
                 right: 5%;
-                outline: 1px solid red;
+                height: 85%;
                 width: 40%;
+            }
+        }
+    }
+
+    .details__info {
+        &__title {
+            // padding: 0 25px;
+
+            #details-collection {
+                font-weight: 400;
+                font-size: $font--xl;
+                margin-bottom: 5px;
+            }
+    
+            #details-name {
+                font-size: $font--m;
+                font-weight: 400;
+            }
+        }
+
+        &__pricing {
+            position: relative;
+            margin: 10px 0 25px 0;
+            font-family: $secondary_font;
+            font-size: 1.1em;
+            letter-spacing: -1.5px;
+
+            & > hr {
+                margin: 20px 0;
+                // border-color: $tertiary_color--dark; // meh, maybe
+                border-color: $primary_color--light;
+            }
+
+            & span {
+                display: block;
+                font-family: $primary_font;
+                margin-bottom: 5px;
+                color: $secondary_color--norm;
+                letter-spacing: normal;
+                text-shadow: -1px 1px 0px #545454;
+            }
+
+            & #details-readMore--link {
+                display: none;
+            }
+
+            & .readMore--hidden {
+                max-height: 500px !important;
+            }
+
+            & #details-price {
+                position: absolute;
+                right: 10px;
+                bottom: 0;
+                font-size: 1.7em;
+                font-weight: 100;
+                font-family: $secondary_font;
+                color: $tertiary_color--norm;
+                letter-spacing: -5px;
+            }
+    
+            & .white-text--bold {
+                font-weight: 400;
+            }
+    
+            & #details-description {
+                width: 95%;
+                margin-top: 0.5em;
+                margin-bottom: 0.7em;
+                letter-spacing: 0.03em;
+                line-height: 1.5em;
+                font-size: 0.9em;
             }
         }
     }

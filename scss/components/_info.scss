@@ -2,19 +2,19 @@
     display: block;
     position: relative;
     height: 40%;
-    width: 100%;
-    padding: 0 40px;
+    width: 95%;
     padding-top: $navbar-height;
     background-color: $primary_color--norm;
 
     &__title {
+        display: inline-block;
         position: inherit;
         color: $tertiary_color--norm;
         line-height: 1.2em;
-        padding-top: 30px;
-        font-size: 2.5em;
+        margin-top: 10%;
+        margin-left: 6%;
+        font-size: 3em;
         text-transform: uppercase;
-        letter-spacing: 0.1em;
         transition: all 0.25s ease-in-out;
         max-height: 1000px;
         overflow-wrap: break-word;
@@ -27,26 +27,17 @@
         // FIXME: Testing these values for phones that are NOT Razer 2
         // line-height: 1.1em;
         // font-size: 2.3em;
-        // letter-spacing: 0.06em;
-    }
-
-    &__link::before {
-        content: "";
-        @include v-center;
-        display: inline-block;
-        height: 2px;
-        width: 40px;
-        left: -60px;
-        background-color: $secondary_color--norm;
-        transition: all 0.1s ease-in;
+        letter-spacing: 0.06em;
     }
 
     &__link {
+        display: inline-block;
         position: inherit;
         font-size: $font--m;
+        font-size: 2.3em;
         color: $secondary_color--norm;
         letter-spacing: 0.07em;
-        margin-left: 60px;
+        margin-left: 6%;
         transition: all 0.1s ease-in;
     }
 
@@ -68,47 +59,6 @@
 }
 
 // * Media Queries
-
-// Ipad portrait
-@media (min-width: 768px) {
-    .info {
-        display: block;
-        position: relative;
-        height: 40%;
-        width: 100%;
-        padding: 0 80px;
-        padding-top: $navbar-height;
-
-        &__title {
-            font-size: $font--xxl;
-        }
-
-        &__link::before {
-            height: 3px;
-            width: 60px;
-            left: -90px;
-        }
-    
-        &__link {
-            font-size: 2em;
-            letter-spacing: 0.07em;
-            margin-left: 90px;
-        }
-    
-        &__index {
-            bottom: -5%;
-            right: 5%;
-            line-height: 0.5em;
-            font-size: 16em;
-        }
-    }
-}
-
-// Ipad landscape
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-
-}
-
 // Desktop
 @media (min-width: 1025px) {
     .info {
@@ -116,31 +66,33 @@
         height: 100%;
         width: 40%;
         z-index: $index-4;
+        padding: 0;
 
         &__title {
-            @include center;
-            top: 45%;
-            font-size: 10em;
+            position: relative;
+            margin-top: 45%;
+            margin-left: 10%;
+            font-size: 5em;
             font-weight: 100;
-            width: 70%;
-            padding-top: 0;
+            letter-spacing: 0;
+            text-shadow: 3px 4px 3px black;
         }
     
         &__link {
-            @include h-center;
-            top: 65%;
-            width: 70%;
-            margin-left: 100px;
+            position: relative;
+            margin-top: 20px;
+            margin-left: 10%;
+            font-size: 2em;
         }
     
         &__index {
-            @include center;
-            width: 70%;
-            top: 80%;
-            right: 0;
-            line-height: 0.5em;
-            font-size: 14em;
-            // border: 1px solid;
+            position: relative;
+            display: block;
+            width: 100%;
+            margin-top: 10px;
+            bottom: auto;
+            line-height: 0.4em;
+            padding-right: 20%;
             text-align: right;
         }
     }
