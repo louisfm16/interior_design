@@ -406,6 +406,13 @@ function PopulateDetails() {
     watchType.innerHTML = `<span class="white-text--bold">Type: </span>${currWatch.type}`;
     description.innerHTML = currWatch.description;
 
+    // If the description is long, space-out some details
+    if(currWatch.description.length >= 415) {
+        back.classList.add('details-spaced');
+        diameter.classList.add('details-spaced');
+        watchType.classList.add('details-spaced');
+    }
+
     price.innerHTML = `$${NumWithCommas(currWatch.price)}.00`;
 
     //  Check if watch already in cart
@@ -441,6 +448,10 @@ function ClearDetails() {
     pieceRef.innerHTML = '';
     price.innerHTML = '';
     description.innerHTML = '';
+
+    back.classList.remove('details-spaced');
+    diameter.classList.remove('details-spaced');
+    watchType.classList.remove('details-spaced');
 
     SetQuantity(1);
 }

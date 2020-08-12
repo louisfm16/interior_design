@@ -37,13 +37,15 @@
     }
 
     & #details__close-btn {
-        opacity: 0.3;
+        opacity: 0.5;
         font-size: 2em;
         position: absolute;
         top: 0;
         right: 0;
         padding: 15px;
+        text-shadow: -2px 2px 1px black;
         z-index: $index-1;
+        color: #e1ca96;
     }
 
     & #details__close-btn:hover {
@@ -217,7 +219,6 @@
             vertical-align: top;
             font-size: $font--xs;
             font-weight: bold;
-
             transition: all 0.1s linear;
         }
 
@@ -248,6 +249,17 @@
             &--plus {
                 border-top-right-radius: 5px;
                 border-bottom-right-radius: 5px;
+            }
+
+            & > input::-webkit-outer-spin-button,
+            & > input::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+
+            /* Firefox */
+            & > input[type=number] {
+                -moz-appearance: textfield;
             }
 
             & > input[type=number] {
@@ -307,42 +319,26 @@
     }
 }
 
-.flickity-page-dots {
-    opacity: 0.4;
-    bottom: 50px;
-    // left: -0%;
-}
-
-.flickity-page-dots:hover {
-    opacity: 1;
-    transition: opacity 0.1s ease-in-out;
-}
-
-.flickity-page-dots .dot {
-    width: 18px;
-    height: 18px;
-    opacity: 0.5;
-    background: transparent;
-    border: 2px solid white;
-}
-
-.flickity-page-dots .dot.is-selected {
-    background: white !important;
-}
-
 // Desktop
 @media (min-width: 1025px) {
     .details {
         transition: background-color 0.1s ease-in;
         transition-delay: 0.5s;
-        height: 80%;
-        width: 85%;
-        border: 3px solid $tertiary_color--norm;
-        border-radius: 5px;
+        // height: 80%;
+        // width: 85%;
+        // border: 3px solid $tertiary_color--norm;
+        // border-radius: 5px;
+
+        height: 100%;
+        width: 100%;
 
         &__pictures {
             transition: all 0.5s ease-in;
-            clip-path: polygon(0 0, 55.7% 0, 35.7% 100%, 0% 100%);
+            clip-path: polygon(0 0, 49.7% 0, 44.7% 100%, 0% 100%);
+
+            & img {
+                filter: brightness(1.1) saturate(1.4) contrast(110%);
+            }
         }
     
         &__carousel {
@@ -351,16 +347,16 @@
         }
     
         &__info {
-            outline: 1px solid;
+            // outline: 1px solid;
             transition: all 0.5s ease-in;
-            clip-path: polygon(56% 0, 100% 0, 100% 100%, 36% 100%);
+            clip-path: polygon(50% 0, 100% 0, 100% 100%, 45% 100%);
             padding: 0;
 
             &__container {
-                // outline: 1px solid;
                 @include v-center;
                 right: 5%;
-                height: 85%;
+                height: auto;
+                width: 42.5%; // FIXME: Maybe
                 width: 40%;
             }
         }
@@ -390,9 +386,8 @@
             letter-spacing: -1.5px;
 
             & > hr {
-                margin: 20px 0;
-                // border-color: $tertiary_color--dark; // meh, maybe
-                border-color: $primary_color--light;
+                margin: 50px 0;
+                border-color: $tertiary_color--dark;
             }
 
             & span {
@@ -412,6 +407,24 @@
                 max-height: 500px !important;
             }
 
+            & .details-spaced {
+                position: absolute;
+                left: 50%;
+            }
+
+            // * Top positioning is based on <hr/> margin
+            & #details-back.details-spaced {
+                top: 52px;
+            }
+
+            & #details-diameter.details-spaced {
+                top: 80px;
+            }
+
+            & #details-type.details-spaced {
+                top: 108px;
+            }
+
             & #details-price {
                 position: absolute;
                 right: 10px;
@@ -429,11 +442,40 @@
     
             & #details-description {
                 width: 95%;
-                margin-top: 0.5em;
+                margin-top: 0.8em;
                 margin-bottom: 0.7em;
                 letter-spacing: 0.03em;
                 line-height: 1.5em;
                 font-size: 0.9em;
+            }
+        }
+
+        &__actions {
+            &__style {
+                width: 10%;
+                line-height: 50px;
+                font-size: $font--m;
+            }
+
+            #details-qty-container {
+                height: 50px;
+    
+                & > label {
+                    top: -20px;
+                    font-size: 1em;
+                    margin-bottom: 2px;
+                }
+    
+                & > input[type=number] {
+                    font-size: 1.5em;
+                }
+            }
+    
+            & #details-add2cart {
+                height: 50px;
+                width: 40%;
+                line-height: 50px;
+                font-size: 1.6em;
             }
         }
     }

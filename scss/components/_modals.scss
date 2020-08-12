@@ -29,11 +29,13 @@
     z-index: $index-1;
 
     &__close-btn {
-        opacity: 0.3;
+        opacity: 0.5;
         font-size: 2em;
         position: fixed;
         right: 0;
         padding: 15px 20px;
+        color: #e1ca96;
+        text-shadow: -2px 2px 1px black;
         z-index: $index-1;
     }
 
@@ -180,17 +182,20 @@
 @media (min-width: 1025px) {
     #about-modal {
         position: absolute;
-        top: 10%;
-        left: 7.5%;
-        height: 80%;
-        width: 85%;
-        border: 3px solid #e1ca96;
-        border-radius: 5px;
+        // top: 10%;
+        // left: 7.5%;
+        // height: 80%;
+        // width: 85%;
+        // border: 3px solid #e1ca96;
+        // border-radius: 5px;
+
+        height: 100%;
+        width: 100%;
         
         &__close-btn {
-            right: auto;
-            margin-left: 85%;
-            transform: translateX(-100%);
+            // right: auto;
+            // margin-left: 85%;
+            // transform: translateX(-100%);
         }
 
         & > header {
@@ -198,8 +203,8 @@
             padding-top: 25vh;
             background-attachment: fixed;
             background-position-x: center;
-            background-position-y: 30%;
-            background-size: 130%;
+            background-position-y: 0;
+            background-size: 133%;
             background-repeat: no-repeat;
 
             & > h1 {
