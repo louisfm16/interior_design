@@ -24,6 +24,7 @@
     left: 0;
     height: 100%;
     width: 100%;
+    padding-top: $navbar-height;
     background-color: $primary_color--dark;
     overflow-x: hidden;
     z-index: $index-1;
@@ -180,8 +181,13 @@
 
 // Desktop
 @media (min-width: 1025px) {
+    #modal-background {
+        display: none;
+    }
+
     #about-modal {
         position: absolute;
+        padding-top: 0;
         // top: 10%;
         // left: 7.5%;
         // height: 80%;
@@ -263,7 +269,7 @@
         }
     }
     
-    .about-modal__container:nth-child(even) {
+    .about-modal__container:nth-child(odd) {
         & > .about-modal__picture {
             left: 5%;
         }

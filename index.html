@@ -17,16 +17,16 @@
 </head>
 <body>
     <!-- Navigation Bar/Container -->
-    <nav>
+    <nav id="nav" class="nav-home">
         <!-- Title/Logo -->
         <a class="logo" href=".">OMEGA</a>
 
         <!-- menu + links NOTE: expanded/compact depending on device -->
         <ul class="menu menu--hidden" id="menu">
-            <li class="menu__links"><a href="#">Home</a></li>
-            <li class="menu__links"><a href="#">Collections</a></li>
-            <li class="menu__links"><a href="#" id="about-button">About</a></li>
-            <li class="menu__links"><a href="#">Contact</a></li>
+            <li class="menu__links" id="home-button">Home</li>
+            <li class="menu__links" id="about-button">Watchmaking</li>
+            <li class="menu__links">Your Collections</li>
+            <li class="menu__links">Contact</li>
         </ul>
 
         <!-- Toggle Navigation button NOTE: hidden on desktop -->
@@ -40,7 +40,6 @@
     </div>
     
     <div id="about-modal" class="about-modal--hidden">
-        <span id="about-modal__close-btn">&#9747;</span>
         <header>
             <h1>Watchmaking</h1>
             <h2>OMEGA Quality: 7 defining cornerstones</h2>
@@ -121,7 +120,6 @@
     <!-- Modal for more details panel -->
     <div class="details details--hidden" id="details">
         <span id="details__feedback" class="details__feedback--hidden">Cart successfully updated!</span>
-        <span id="details__close-btn">&#9747;</span>
 
         <div class="details__pictures">
             <div class="details__carousel" id="details__carousel">

@@ -41,10 +41,6 @@
         transition: all 0.1s ease-in;
     }
 
-    &__link:hover{
-        color: $secondary_color--light;
-    }
-
     &__index {
         display: block;
         position: absolute;
@@ -55,6 +51,7 @@
         font-family: $tertiary_font;
         color: $secondary_color--dark;
         opacity: 0.2;
+        pointer-events: none;
     }
 }
 

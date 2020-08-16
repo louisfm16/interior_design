@@ -15,11 +15,11 @@ let flkty,
 // #endregion GeneraL Variables 
 
 // #region Elements
-let menu,
+let nav,
+    menu,
     menuToggle,
     details,
     detailsCarousel,
-    detailsCloseBtn,
     detailsReadMore,
     detailsReadMoreLink,
     mainTitle,
@@ -27,10 +27,10 @@ let menu,
     carousel,
     carouselImgs,
     modalBackground,
+    homeButton,
     aboutButton,
     aboutModal,
-    aboutContainers,
-    aboutCloseBtn;
+    aboutContainers;
 // #endregion Elements
 
 // #region Details id's
@@ -83,6 +83,7 @@ function Init() {
     // ! Looks bad I know, sorry :(
     // ************************************* Elements *************************************
     // #region Variable Initialization
+    nav = document.getElementById('nav');
     menu = document.getElementById('menu');
     menuToggle = document.getElementById('menu-toggle');
     mainTitle = document.getElementById('info__title');
@@ -92,14 +93,13 @@ function Init() {
     galleryIndex = document.getElementById('info__index');
     details = document.getElementById('details');
     detailsCarousel = document.getElementById('details__carousel');
-    detailsCloseBtn = document.getElementById('details__close-btn');
     detailsReadMore = document.getElementById('details-readMore');
     detailsReadMoreLink = document.getElementById('details-readMore--link');
     modalBackground = document.getElementById('modal-background');
+    homeButton = document.getElementById('home-button');
     aboutButton = document.getElementById('about-button');
     aboutModal = document.getElementById('about-modal');
     aboutContainers = document.querySelectorAll('.about-modal__container');
-    aboutCloseBtn = document.getElementById('about-modal__close-btn');
 
     // Details id's
     collection = document.getElementById('details-collection');
@@ -180,13 +180,8 @@ function Init() {
     });
 
     modalBackground.addEventListener('click', function() {
-        CloseCurrentModal();
         CloseModalBackground();
-    });
-
-    detailsCloseBtn.addEventListener('click', function() {
-        CloseCurrentModal();
-        CloseModalBackground();
+        SimulateClick(menuToggle);
     });
 
     detailsReadMoreLink.addEventListener('click', function() {
@@ -280,35 +275,25 @@ function Init() {
     // Show / Hide menu button for mobile
     menuToggle.addEventListener('click', function() {
         if(!menuOpen) { // Menu is off so lets turn it on
-            currModal = 'menu';
-            modalBackground.classList.add('modal-background--menu');
-            OpenModalBackground();
-
-            menu.classList.remove('menu--hidden');
-            menuToggle.classList.add('menu-toggle--close');
+            OpenMenu();
         } 
         else if(menuOpen) { // Menu is on so lets turn it off
-            menu.classList.add('menu--hidden');
-            menuToggle.classList.remove('menu-toggle--close');
-            
-            modalBackground.classList.remove('modal-background--menu');
-            CloseModalBackground();
+            CloseMenu()
         }
-
-        menuOpen = !menuOpen;
     });
 
-    aboutButton.addEventListener('click', function(e) {
-        e.preventDefault();
+    homeButton.addEventListener('click', function() {
+        CloseCurrentModal();
+        SimulateClick(menuToggle);
+    });
 
-        OpenModalBackground();
+    aboutButton.addEventListener('click', function() {
+        CloseCurrentModal();
+
         aboutModal.classList.remove('about-modal--hidden');
         currModal = 'about';
-    });
 
-    aboutCloseBtn.addEventListener('click', function() {
-        SimulateClick(modalBackground);
-        if(menuOpen) SimulateClick(menuToggle); // For desktop
+        SimulateClick(menuToggle);
     });
 
     aboutModal.addEventListener('scroll', function() {
@@ -361,8 +346,30 @@ function CloseModalBackground() {
     modalBackground.classList.add('modal-background--hidden');
 }
 
+function OpenMenu() {
+    modalBackground.classList.add('modal-background--menu');
+    modalBackground.classList.remove('modal-background--hidden');
+
+    menu.classList.remove('menu--hidden');
+    menuToggle.classList.add('menu-toggle--close');
+
+    menuOpen = true;
+}
+
+function CloseMenu() {
+    modalBackground.classList.remove('modal-background--menu');
+    modalBackground.classList.add('modal-background--hidden');
+
+    menu.classList.add('menu--hidden');
+    menuToggle.classList.remove('menu-toggle--close');
+
+    
+    menuOpen = false;
+}
+
 function OpenDetails() {
-    OpenModalBackground();
+    CloseCurrentModal();
+    nav.classList.remove('nav-home');
 
     currModal = 'details';
     details.classList.remove('details--hidden');
@@ -486,20 +493,21 @@ function CloseCurrentModal() {
     switch(currModal) {
         case undefined:
             return;
-        case 'menu':
-            SimulateClick(menuToggle);
-            break;
         case 'details':
             CloseDetails();
             break;
         case 'about':
             aboutModal.scrollTo(0,0);
             aboutModal.classList.add('about-modal--hidden');
-            currModal = undefined;
             break;
     }
 
     currModal = undefined;
+
+    // If on home page reset navbar style
+    if(currModal == undefined) {
+        nav.classList.add('nav-home');
+    }
 }
 
 // #region Helper Functions
