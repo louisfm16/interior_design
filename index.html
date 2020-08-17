@@ -23,10 +23,10 @@
 
         <!-- menu + links NOTE: expanded/compact depending on device -->
         <ul class="menu menu--hidden" id="menu">
-            <li class="menu__links" id="home-button">Home</li>
-            <li class="menu__links" id="about-button">Watchmaking</li>
-            <li class="menu__links">Your Collections</li>
-            <li class="menu__links">Contact</li>
+            <li class="menu__links current-modal" id="home-button">Home</li>
+            <li class="menu__links" id="about-button">Omega's Watchmaking</li>
+            <li class="menu__links" id="basket-button">My Basket</li>
+            <li class="menu__links" id="contact-button">Contact Us</li>
         </ul>
 
         <!-- Toggle Navigation button NOTE: hidden on desktop -->
@@ -119,7 +119,7 @@
 
     <!-- Modal for more details panel -->
     <div class="details details--hidden" id="details">
-        <span id="details__feedback" class="details__feedback--hidden">Cart successfully updated!</span>
+        <span id="details__feedback" class="details__feedback--hidden">Basket successfully updated!</span>
 
         <div class="details__pictures">
             <div class="details__carousel" id="details__carousel">
@@ -161,7 +161,7 @@
                         <label>Qty.</label>
                         <span id="details-qty-container--minus" class="details__info__actions__style">&minus;</span><input id="details-qty-container--value" class="details__info__actions__style" type="number" value="1" min="1" max="10"><span id="details-qty-container--plus" class="details__info__actions__style">&plus;</span>
                     </div>
-                    <span id="details-add2cart">Add to cart</span>
+                    <span id="details-add2cart">Add to basket</span>
                 </div>
             </div>
         </div>

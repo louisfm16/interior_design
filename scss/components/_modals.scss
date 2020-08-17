@@ -3,9 +3,10 @@
     @include center;
     height: 100vh;
     width: 100vw;
-    background-color: black;
+    background-color: #0e0e0e;
     opacity: 0.8;
     z-index: $index-1;
+    transition: opacity 0.1s ease-in-out;
 }
 
 .modal-background--hidden {
@@ -101,6 +102,8 @@
         display: block;
         position: relative;
         height: 65vh;
+        box-sizing: content-box;
+        padding-bottom: 50px;
         border-bottom: 1px solid $primary_color--light;
         z-index: $index-5;
     }
@@ -148,7 +151,7 @@
     &__textbox {
         display: block;
         position: relative;
-        margin: 10% auto 0;
+        margin: 12.5% auto 0;
         width: 90%;
         text-transform: uppercase;
 
@@ -226,6 +229,7 @@
     .about-modal {
         &__container {
             height: 65vh;
+            padding-bottom: 0;
         }
 
         &__container:first-of-type > &__picture  {

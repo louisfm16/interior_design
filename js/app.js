@@ -219,7 +219,7 @@ function Init() {
         // The index it was found at
         let foundAt = undefined;
         let newMax = parseInt(qtyValue.getAttribute('max'));
-        let msg = 'Cart updated successfully!';
+        let msg = 'Basket updated successfully!';
 
         // Check if watch is already in cart
         cart.forEach(function(item, index) {
@@ -290,6 +290,8 @@ function Init() {
     aboutButton.addEventListener('click', function() {
         CloseCurrentModal();
 
+        homeButton.classList.remove('current-modal');
+        aboutButton.classList.add('current-modal');
         aboutModal.classList.remove('about-modal--hidden');
         currModal = 'about';
 
@@ -370,6 +372,8 @@ function CloseMenu() {
 function OpenDetails() {
     CloseCurrentModal();
     nav.classList.remove('nav-home');
+    nav.getElementsByClassName('menu')[0].style.borderBottom = '1px solid rgba(242,242,242,0.4)';
+    homeButton.classList.remove('current-modal');
 
     currModal = 'details';
     details.classList.remove('details--hidden');
@@ -378,6 +382,7 @@ function OpenDetails() {
 }
 
 function CloseDetails() {
+    nav.getElementsByClassName('menu')[0].style.borderBottom = 'none';
     details.classList.add('details--hidden');
     
     // details.classList.add('carousel__card'); // -- Why did I have this here?
@@ -499,6 +504,7 @@ function CloseCurrentModal() {
         case 'about':
             aboutModal.scrollTo(0,0);
             aboutModal.classList.add('about-modal--hidden');
+            aboutButton.classList.remove('current-modal');
             break;
     }
 
@@ -507,6 +513,7 @@ function CloseCurrentModal() {
     // If on home page reset navbar style
     if(currModal == undefined) {
         nav.classList.add('nav-home');
+        homeButton.classList.add('current-modal');
     }
 }
 

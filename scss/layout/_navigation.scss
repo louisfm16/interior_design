@@ -12,7 +12,6 @@ $edge-padding: 10px;
     transition: all 0.3s ease-in-out;
 }
 
-
 // FIXME: am I being redundant here ???? 
 #nav.nav-home {
     background-color: $primary_color--norm;
@@ -26,6 +25,7 @@ $edge-padding: 10px;
     font-family: $secondary_font;
     color: $secondary_color--norm;
     line-height: $navbar-height;
+    text-shadow: 0px 0px 3px black;
 }
 
 .menu {
@@ -39,17 +39,26 @@ $edge-padding: 10px;
     z-index: $index-1;
     transition: all 0.1s ease-in;
 
+    // Mobile offset for first link
     &__links:first-child {
-        color: $secondary_color--light;
         margin-top: $navbar-height + 15px;
+    }
+
+    &__links.current-modal {
+        color: $secondary_color--light;
+        border-bottom: 1px solid rgba($tertiary_color--dark, 0.8) !important;
+    }
+
+    &__links:hover {
+        border-bottom: 1px solid rgba($secondary_color--norm, 0.4);
     }
 
     &__links {
         text-align: center;
-        font-size: $font--m;
+        font-size: 1.8em;
         font-weight: 400;
         color: $secondary_color--dark;
-        margin: 35px 0;
+        margin: 40px 15px;
         cursor: pointer;
         transition: all 0.1s ease-in-out;
     }
@@ -92,7 +101,8 @@ $edge-padding: 10px;
         background-color: $tertiary_color--norm;
         transform: translate(-50%, -50%);
         transition: all 0.2s ease-in-out;
-        text-shadow: -1px 1px 0 #000;
+        // text-shadow: -1px 1px 0 #000; // FIXME: Why is this here
+        box-shadow: -1px 1px 2px 0px black;
     }
     
     &__icon::before, &__icon::after {
@@ -103,7 +113,8 @@ $edge-padding: 10px;
         width: 50%;
         background-color: $tertiary_color--norm;
         transition: all 0.2s ease-in-out;
-        text-shadow: -1px 1px 2px #000;
+        // text-shadow: -1px 1px 2px #000; // FIXME: Why is this here
+        box-shadow: -1px 1px 2px 0px black;
     }
     
     &__icon::before {
@@ -120,18 +131,21 @@ $edge-padding: 10px;
 .menu-toggle--close {
     & > .menu-toggle__icon {
         transform: translate(-50%, -50%) rotatez(-45deg);
+        box-shadow: none;
     }
     
     & > .menu-toggle__icon::before {
         top: -190%;
         left: 50%;
         transform: translatex(-50%) rotatez(90deg);
+        box-shadow: none;
     }
     
     & > .menu-toggle__icon::after {
         bottom: -190%;
         right: 50%;
         transform: translatex(50%) rotatez(90deg);
+        box-shadow: none;
     }
 }
 
@@ -150,11 +164,12 @@ $edge-padding: 10px;
     
     .logo {
         font-size: 2em;
+        margin-left: 40px;
     }
 
     .menu {
         height: 100%;
-        width: auto;
+        width: 50%;
         border: none;
         margin: 0;
         top: 0;
@@ -170,7 +185,7 @@ $edge-padding: 10px;
             display: inline-block;
             line-height: $navbar-height;
             font-size: 1.8em;
-            margin: 0 60px;
+            margin: 0 40px;
         }
     }
 
