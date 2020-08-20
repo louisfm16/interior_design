@@ -19,13 +19,13 @@
     <!-- Navigation Bar/Container -->
     <nav id="nav" class="nav-home">
         <!-- Title/Logo -->
-        <a class="logo" href=".">OMEGA</a>
+        <a class="logo" onclick="localStorage.clear()" href=".">OMEGA</a>
 
         <!-- menu + links NOTE: expanded/compact depending on device -->
         <ul class="menu menu--hidden" id="menu">
             <li class="menu__links current-modal" id="home-button">Home</li>
             <li class="menu__links" id="about-button">Omega's Watchmaking</li>
-            <li class="menu__links" id="basket-button">My Basket</li>
+            <li class="menu__links" id="cart-button">My Basket</li>
             <li class="menu__links" id="contact-button">Contact Us</li>
         </ul>
 
@@ -114,6 +114,35 @@
                 <h2>7. Metas certification: A new quality standard</h2>
                 <h3>A METAS-certified watch has passed a battery of tests. It's ready for your life.</h3>
             </div>
+        </div>
+    </div>
+
+    <div id="cart-modal" class="cart-modal cart-modal--hidden">
+        <div class="cart-modal__cart">
+            <!-- * Skeleton of how the HTML should look -->
+            <!-- <div class="cart-modal__item">
+                <span class="cart-modal__item-delete">X</span>
+
+                <div class='cart-modal__item-picture'><img src="https://i.ytimg.com/vi/D7VIKxWQLzM/maxresdefault.jpg" alt=""></div>
+
+                <div class='cart-modal__item-textbox'>
+                    <h2>Speedmaster</h2>
+                    <h3>Speedmaster Professional Moonwatch Apollo 11 50 Anniversary Moonshine Gold</h3>
+                    <h4>310.60.42.50.99.001</h4>
+                </div>
+
+                <span class='cart-modal__item-price'>$34,600.00</span>
+
+                <div class='cart-modal__item-qty-adjust'>
+                    <span>&minus;</span>
+                    <span>1</span>
+                    <span>&plus;</span>
+                </div>
+            </div> -->
+        </div>
+
+        <div class="cart-modal__checkout">
+
         </div>
     </div>
 

@@ -36,23 +36,6 @@
         top: -100px !important;
     }
 
-    & #details__close-btn {
-        opacity: 0.5;
-        font-size: 2em;
-        position: absolute;
-        top: 0;
-        right: 0;
-        padding: 15px;
-        text-shadow: -2px 2px 1px black;
-        z-index: $index-1;
-        color: #e1ca96;
-    }
-
-    & #details__close-btn:hover {
-        opacity: 1;
-        transition: opacity 0.1s ease-in-out;
-    }
-
     &__pictures {
         position: absolute;
         left: 0;

@@ -1,0 +1,22 @@
+#modal-background {
+    display: block;
+    @include center;
+    height: 100vh;
+    width: 100vw;
+    background-color: #0e0e0e;
+    opacity: 0.8;
+    z-index: $index-1;
+    transition: opacity 0.1s ease-in-out;
+}
+
+.modal-background--hidden {
+    opacity: 0 !important;
+    pointer-events: none;
+}
+
+// Desktop
+@media (min-width: 1025px) {
+    #modal-background {
+        display: none;
+    }
+}

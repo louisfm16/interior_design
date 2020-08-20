@@ -29,8 +29,10 @@ let nav,
     modalBackground,
     homeButton,
     aboutButton,
+    cartButton,
     aboutModal,
-    aboutContainers;
+    aboutContainers,
+    cartModal;
 // #endregion Elements
 
 // #region Details id's
@@ -98,8 +100,10 @@ function Init() {
     modalBackground = document.getElementById('modal-background');
     homeButton = document.getElementById('home-button');
     aboutButton = document.getElementById('about-button');
+    cartButton = document.getElementById('cart-button');
     aboutModal = document.getElementById('about-modal');
     aboutContainers = document.querySelectorAll('.about-modal__container');
+    cartModal = document.getElementById('cart-modal');
 
     // Details id's
     collection = document.getElementById('details-collection');
@@ -118,7 +122,7 @@ function Init() {
     add2Cart = document.getElementById('details-add2cart');
     detailsFeedback = document.getElementById('details__feedback');
 
-    cart = JSON.parse(window.sessionStorage.getItem('cart')) || [];
+    cart = JSON.parse(window.localStorage.getItem('cart')) || [];
     // #endregion Variable Initialization
 
     LoadJSON('https://raw.githubusercontent.com/louisfm16/fake-watch-database/master/watch-data.json', function(data) {
@@ -259,8 +263,8 @@ function Init() {
         qtyValue.setAttribute('max', newMax);
 
         // TODO: Un-comment on release or when fully implemented
-        // let JSONCart = JSON.stringify(cart);
-        // window.sessionStorage.setItem('cart', JSONCart);
+        let JSONCart = JSON.stringify(cart);
+        window.localStorage.setItem('cart', JSONCart);
 
         detailsFeedback.innerHTML = msg;
         detailsFeedback.classList.remove('details__feedback--hidden');
@@ -296,6 +300,77 @@ function Init() {
         currModal = 'about';
 
         SimulateClick(menuToggle);
+    });
+
+    cartButton.addEventListener('click', function() {
+        CloseCurrentModal();
+
+        homeButton.classList.remove('current-modal');
+        cartButton.classList.add('current-modal');
+        cartModal.classList.remove('cart-modal--hidden');
+        currModal = 'cart';
+
+        SimulateClick(menuToggle);
+
+        // TODO: Populate with all cart items
+        // if(cart <= 0) return;
+        for(let i = 0; i < cart.length; i++) {
+            let currItem = watchData[cart[i].watchIndex];
+            
+            // Single cart item
+            let item = document.createElement('div');
+            item.classList.add('cart-modal__item');
+
+            //  Delete icon
+            let trash = document.createElement('span');
+            trash.classList.add('cart-modal__item-delete');
+            trash.innerHTML = 'X';
+            item.appendChild(trash);
+
+            // Picture element
+            let picture = document.createElement('div');
+            picture.classList.add('cart-modal__item-picture');
+            let img = document.createElement('img');
+            img.setAttribute('src', currItem.images[0]);
+            picture.appendChild(img);
+            item.appendChild(picture);
+
+            // Textbox element
+            let textbox = document.createElement('div');
+            textbox.classList.add('cart-modal__item-textbox');
+            let collection = document.createElement('h2');
+            collection.innerHTML = currItem.collection;
+            let name = document.createElement('h3');
+            name.innerHTML = currItem.name;
+            let ref = document.createElement('h4');
+            ref.innerHTML = currItem.ref;
+            textbox.appendChild(collection);
+            textbox.appendChild(name);
+            textbox.appendChild(ref);
+            item.appendChild(textbox);
+
+            // Price
+            let price = document.createElement('span');
+            price.classList.add('cart-modal__item-price');
+            price.innerHTML = `$${NumWithCommas(currItem.price)}.00`;
+            item.appendChild(price);
+
+            // Quantity
+            let qty = document.createElement('div');
+            qty.classList.add('cart-modal__item-qty-adjust');
+            let minus = document.createElement('span');
+            minus.innerHTML = '&minus;';
+            let value = document.createElement('span');
+            value.innerHTML = cart[i].qty;
+            let plus = document.createElement('span');
+            plus.innerHTML = '&plus;';
+            qty.appendChild(minus);
+            qty.appendChild(value);
+            qty.appendChild(plus);
+            item.appendChild(qty);
+
+            cartModal.getElementsByClassName('cart-modal__cart')[0].appendChild(item);
+        }
     });
 
     aboutModal.addEventListener('scroll', function() {
@@ -505,6 +580,16 @@ function CloseCurrentModal() {
             aboutModal.scrollTo(0,0);
             aboutModal.classList.add('about-modal--hidden');
             aboutButton.classList.remove('current-modal');
+
+            
+            break;
+        case 'cart':
+            cartModal.scrollTo(0,0);
+            cartModal.classList.add('cart-modal--hidden');
+            cartButton.classList.remove('current-modal');
+
+            // TODO: Clear all cart html
+            cartModal.getElementsByClassName('cart-modal__cart')[0].innerHTML = '';
             break;
     }
 

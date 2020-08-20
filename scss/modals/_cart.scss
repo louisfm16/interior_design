@@ -1,0 +1,122 @@
+.cart-modal--hidden {
+    // FIXME: Uncomment below when completed!
+    display: none !important;
+}
+
+#cart-modal {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    padding-top: $navbar-height;
+    background-color: $primary_color--dark;
+    overflow-x: hidden;
+    z-index: $index-1;
+}
+
+.cart-modal {
+    &__cart {
+
+    }
+
+    &__item {
+        display: table;
+        position: relative;
+        width: 100%;
+        padding: 5%;
+        border-bottom: 1px solid rgba(#fff, 0.3);
+
+        &-delete {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 5%;
+            font-size: $font--xs;
+            text-align: center;
+        }
+
+        &-picture {
+            display: table-cell;
+            position: relative;
+            border: 2px solid $tertiary_color--dark;
+            border-radius: 1px;
+            height: 100%;
+            width: 20%;
+            overflow: hidden;
+            vertical-align: middle;
+
+            & > img {
+                @include center;
+                height: 100%;
+                filter: brightness(1.1) saturate(1.4) contrast(110%);
+            }
+        }
+
+        &-textbox {
+            display: table-cell;
+            // border: 1px solid blue;
+            // height: 145px;
+            width: 80%;
+            padding: 0 5%;
+            padding-bottom: 12.5%;
+            box-sizing: content-box;
+
+            & > h2 {
+                width: 100%;
+                font-family: 'Dancing Script', cursive;
+                font-weight: 400;
+                font-size: 1.8em;
+                line-height: 1.1em;
+            }
+
+            & > h3 {
+                width: 100%;
+                font-size: $font--xs;
+                line-height: 1.2em;
+                font-weight: 400;
+            }
+
+            & > h4 {
+                width: 100%;
+                color: #6b6b6b;
+                margin-top: 5px;
+            }
+        }
+
+        &-price {
+            position: absolute;
+            bottom: 0;
+            margin-bottom: 5%;
+            left: 27%;
+            font-family: $secondary_font;
+            letter-spacing: -0.15em;
+            font-size: $font--s;
+            font-size: 1.7em;
+        }
+
+        &-qty-adjust {
+            position: absolute;
+            bottom: 0;
+            margin-bottom: 5%;
+            right: 5%;
+
+            & > span {
+                font-size: $font--s;
+                // line-height: 20px;
+                padding: 0 10px;
+                text-align: center;
+                vertical-align: middle;
+            }
+
+            & > span:nth-child(2) {
+                font-family: $secondary_font;
+            }
+        }
+    }
+
+    &__checkout {
+        display: none;
+    }
+}

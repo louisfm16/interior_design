@@ -7,8 +7,12 @@
 
 @import 'layout/navigation';
 
+@import 'modals/background';
+@import 'modals/about';
+@import 'modals/cart';
+@import 'modals/contact';
+
 // @import 'components/buttons';
-@import 'components/modals';
 @import 'components/info';
 @import 'components/carousel';
 @import 'components/details';
